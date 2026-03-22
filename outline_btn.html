@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDS CodeFx | CSS Outline Button Animation</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+/* ===== BRAND COLORS ===== */
+:root{
+  --pink:#BF2BE2;
+  --purple:#8A2BE2;
+  --blue:#1E90FF;
+  --dark:#111;
+  --light:#ffffff;
+  --gray:#f5f7fa;
+}
+
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#ffffff;
+  color:#222;
+}
+
+/* ===== HEADER ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logo img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+nav a{
+  margin-left:2rem;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0;
+  height:2px;
+  background:white;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* TOAST NOTIFICATION */
+
+#toast{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%) translateY(20px);
+background:#111;
+color:#fff;
+padding:12px 25px;
+border-radius:30px;
+font-size:14px;
+opacity:0;
+pointer-events:none;
+transition:0.35s;
+z-index:9999;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+#toast.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index:1100;
+}
+
+.hamburger span {
+  display:block;
+  width:25px;
+  height:3px;
+  margin:5px 0;
+  background:white;
+  transition:0.3s;
+}
+
+.hamburger.active span:nth-child(1){
+  transform:rotate(45deg) translate(5px,5px);
+}
+.hamburger.active span:nth-child(2){
+  opacity:0;
+}
+.hamburger.active span:nth-child(3){
+  transform:rotate(-45deg) translate(5px,-5px);
+}
+
+
+/* ===== DROPDOWN ===== */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
+position:absolute;
+top:35px;
+left:0;
+background:white;
+min-width:180px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+display:none;
+flex-direction:column;
+overflow:hidden;
+}
+
+.dropdown-menu a{
+color:#333;
+padding:10px 15px;
+text-decoration:none;
+display:block;
+font-weight:500;
+}
+
+.dropdown-menu a:hover{
+background:#f5f5f5;
+color:var(--purple);
+}
+
+/* DROPDOWN FIX */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
+position:absolute;
+top:40px;
+left:0;
+background:white;
+min-width:180px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+display:none;
+flex-direction:column;
+overflow:hidden;
+z-index:1000;
+}
+
+.dropdown-menu a{
+color:#333;
+padding:10px 15px;
+text-decoration:none;
+display:block;
+font-weight:500;
+}
+
+.dropdown-menu a:hover{
+background:#f5f5f5;
+color:var(--purple);
+}
+
+.dropdown.active .dropdown-menu{
+display:block;
+}
+
+
+
+
+/* Nav default desktop */
+nav{
+  display:flex;
+  gap:2rem;
+  align-items:center;
+}
+
+/* Mobile nav */
+@media(max-width:1080px){
+  .hamburger{display:flex;}
+  nav{
+    position:absolute;
+    top:100%;
+    right:0;
+    width:100%;
+    flex-direction:column;
+    align-items:center;
+    background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+    display:none;
+    padding:1rem 0;
+  }
+  nav.active{display:flex;}
+  nav a{
+    margin:1rem 0;
+    font-size:1.2rem;
+  }
+}
+
+
+@media(max-width:1080px){
+
+.dropdown-menu{
+position:static;
+background:transparent;
+box-shadow:none;
+display:none;
+}
+
+.dropdown.active .dropdown-menu{
+display:block;
+}
+
+.dropdown-menu a{
+color:white;
+}
+
+.dropdown-menu a:hover{
+background:rgba(255,255,255,0.15);
+color:white;
+}
+}
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  padding:5rem 2rem;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
+}
+
+.hero h1{
+  font-size:2.5rem;
+  margin-bottom:1rem;
+}
+
+.hero p{
+  font-size:1.2rem;
+  margin-bottom:2rem;
+}
+
+.hero button{
+  padding:0.8rem 2rem;
+  border:none;
+  border-radius:50px;
+  background:white;
+  color:var(--purple);
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.hero button:hover{
+  background:var(--blue);
+  color:white;
+}
+
+/* ===== SECTIONS ===== */
+section{
+  padding:4rem 2rem;
+}
+
+section h2{
+  text-align:center;
+  font-size:2rem;
+  margin-bottom:2rem;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+
+/* ===== CARDS ===== */
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:2rem;
+  text-align:center;
+  transition:0.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.07);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.card h3{
+  margin-bottom:1rem;
+  color:var(--purple);
+}
+
+.card p{
+  color:#555;
+  font-size:0.95rem;
+}
+
+.card button{
+  margin-top:1rem;
+  padding:0.6rem 1.5rem;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card button:hover{
+  transform:scale(1.05);
+}
+
+:root{
+--pink:#BF2BE2;
+--purple:#8A2BE2;
+--blue:#1E90FF;
+}
+
+.code-editor{
+max-width:1000px;
+margin:40px auto;
+}
+
+.editor-container{
+border-radius:12px;
+overflow:hidden;
+background:white;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.tabs{
+display:flex;
+background:#eee;
+}
+
+.tabs button{
+flex:1;
+padding:12px;
+border:none;
+background:#eee;
+cursor:pointer;
+font-weight:600;
+}
+
+.tabs button.active{
+background:white;
+color:#8A2BE2;
+border-bottom:3px solid #8A2BE2;
+}
+
+.editor{
+width:100%;
+height:200px;
+border:none;
+outline:none;
+padding:12px;
+font-family:monospace;
+display:none;
+}
+
+.editor.html{
+display:block;
+}
+
+.editor-title{
+max-width:1000px;
+margin:20px auto 10px;
+font-size:1.3rem;
+color:#8A2BE2;
+font-weight:700;
+}
+
+.run-bar{
+text-align:center;
+padding:12px;
+border-top:1px solid #ddd;
+}
+
+.run-bar button{
+padding:8px 22px;
+margin:5px;
+border:none;
+border-radius:20px;
+background:linear-gradient(90deg,var(--pink),var(--blue));
+color:white;
+cursor:pointer;
+}
+
+.preview{
+width:100%;
+height:350px;
+border-top:2px solid #ddd;
+display:none;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:2rem;
+}
+
+footer a{
+  color:var(--blue);
+  text-decoration:none;
+  margin:0 10px;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+   <a href="index.html"> <img src="TDS codefx final 3 use this logo .png (2).png" alt="Logo"></a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+ <nav id="nav-menu">
+
+<a href="index.html">Home</a>
+<a href="index.html#tools">Tools</a>
+
+<a href="web_index.animation.html">Animations</a>
+
+<a href="index.html#contact">Contact</a>
+
+
+</nav>
+</header>
+
+<div id="toast"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>CSS Outline Button Effects</h1>
+  <p>Explore creative CSS Outline Button animations with live preview and copy-ready code for your projects.</p>
+  <button onclick="document.querySelector('.code-editor').scrollIntoView({behavior:'smooth'})">
+Explore
+</button>
+</section>
+
+<!-- CONTENT SECTION -->
+
+<section class="code-editor" data-title="Border Draw Left Button Effect">
+
+<code type="html">
+&lt;button class="border-draw-left"&gt;
+&lt;span&gt;Explore&lt;/span&gt;
+&lt;/button&gt;
+</code>
+
+<code type="css">
+.border-draw-left{
+padding:14px 32px;
+font-size:18px;
+font-weight:bold;
+color:#8A2BE2;
+background:transparent;
+border:none;
+cursor:pointer;
+position:relative;
+outline:none;
+}
+
+/* Top & Bottom lines */
+.border-draw-left::before,
+.border-draw-left::after{
+content:"";
+position:absolute;
+height:2px;
+width:0;
+background:#8A2BE2;
+transition:0.4s ease;
+}
+
+/* Top line */
+.border-draw-left::before{
+top:0;
+left:0;
+}
+
+/* Bottom line */
+.border-draw-left::after{
+bottom:0;
+right:0;
+}
+
+/* Left & Right lines */
+.border-draw-left span::before,
+.border-draw-left span::after{
+content:"";
+position:absolute;
+width:2px;
+height:0;
+background:#8A2BE2;
+transition:0.4s ease;
+}
+
+/* Left line */
+.border-draw-left span::before{
+top:0;
+left:0;
+}
+
+/* Right line */
+.border-draw-left span::after{
+bottom:0;
+right:0;
+}
+
+/* Hover animation */
+.border-draw-left:hover::before{
+width:100%;
+}
+
+.border-draw-left:hover::after{
+width:100%;
+transition-delay:0.2s;
+}
+
+.border-draw-left:hover span::before{
+height:100%;
+transition-delay:0.4s;
+}
+
+.border-draw-left:hover span::after{
+height:100%;
+transition-delay:0.6s;
+}
+</code>
+
+<code type="js">
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Border Draw Right Button Effect">
+
+<code type="html">
+&lt;button class="border-draw-right"&gt;Explore&lt;/button&gt;
+</code>
+
+<code type="css">
+.border-draw-right{
+padding:14px 32px;
+font-size:18px;
+font-weight:bold;
+color:#8A2BE2;
+background:transparent;
+border:none;
+cursor:pointer;
+position:relative;
+outline:none;
+}
+
+/* Top & Bottom lines */
+.border-draw-right::before,
+.border-draw-right::after{
+content:"";
+position:absolute;
+height:2px;
+width:0;
+background:#8A2BE2;
+transition:0.4s ease;
+}
+
+/* Top line */
+.border-draw-right::before{
+top:0;
+right:0;
+}
+
+/* Bottom line */
+.border-draw-right::after{
+bottom:0;
+left:0;
+}
+
+/* Left & Right lines */
+.border-draw-right span::before,
+.border-draw-right span::after{
+content:"";
+position:absolute;
+width:2px;
+height:0;
+background:#8A2BE2;
+transition:0.4s ease;
+}
+
+/* Right line */
+.border-draw-right span::before{
+top:0;
+right:0;
+}
+
+/* Left line */
+.border-draw-right span::after{
+bottom:0;
+left:0;
+}
+
+/* Hover animation */
+.border-draw-right:hover::before{
+width:100%;
+}
+
+.border-draw-right:hover::after{
+width:100%;
+transition-delay:0.2s;
+}
+
+.border-draw-right:hover span::before{
+height:100%;
+transition-delay:0.4s;
+}
+
+.border-draw-right:hover span::after{
+height:100%;
+transition-delay:0.6s;
+}
+</code>
+
+<code type="js">
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Border Expand Hover Button Effect"> <code type="html"> &lt;button class="border-expand-button"&gt;Get Started&lt;/button&gt; </code> <code type="css"> .border-expand-button { position: relative; padding: 15px 35px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
+
+/* Pseudo-element for border expansion */
+.border-expand-button::before {
+content: "";
+position: absolute;
+top: 50%;
+left: 50%;
+width: 0;
+height: 0;
+border: 2px solid #007bff;
+border-radius: 50px;
+transform: translate(-50%, -50%);
+transition: all 0.4s ease;
+z-index: -1;
+}
+
+/* On hover, expand the border */
+.border-expand-button:hover::before {
+width: 120%;
+height: 120%;
+}
+
+/* Optional: text color change */
+.border-expand-button:hover {
+color: #007bff;
+}
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Outline Pulse Button Effect"> <code type="html"> &lt;button class="outline-pulse-button"&gt;Get Started&lt;/button&gt; </code> <code type="css"> .outline-pulse-button { position: relative; padding: 15px 35px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; outline: none; transition: all 0.3s ease; /* Pulse animation */ animation: pulse-border 2s infinite; }
+
+/* Hover optional: scale slightly */
+.outline-pulse-button:hover {
+transform: scale(1.05);
+}
+
+/* Pulse animation keyframes */
+@keyframes pulse-border {
+0% {
+box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.5);
+}
+50% {
+box-shadow: 0 0 10px 10px rgba(0, 123, 255, 0);
+}
+100% {
+box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+}
+}
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Border Glow Click Pulse Button Effect"> <code type="html"> &lt;button class="glow-pulse-button"&gt;Get Started&lt;/button&gt; </code> <code type="css"> .glow-pulse-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
+
+/* Hover: glowing border */
+.glow-pulse-button:hover {
+box-shadow: 0 0 15px 5px rgba(0, 123, 255, 0.5);
+transform: scale(1.05);
+}
+
+/* Click / active animation /
+.glow-pulse-button:active {
+transform: scale(0.95); / Button pressed */
+box-shadow: 0 0 25px 10px rgba(0, 123, 255, 0.4);
+}
+
+/* Optional: subtle pulse animation continuously */
+.glow-pulse-button::after {
+content: "";
+position: absolute;
+top: -5px;
+left: -5px;
+width: calc(100% + 10px);
+height: calc(100% + 10px);
+border-radius: 50px;
+border: 2px solid rgba(0, 123, 255, 0.2);
+opacity: 0;
+transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* On hover: show pulse outline */
+.glow-pulse-button:hover::after {
+opacity: 1;
+transform: scale(1.1);
+}
+</code>
+
+</section>
+
+
+<section class="code-editor" data-title="Double Border Outline Button Effect"> <code type="html"> &lt;button class="double-border-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .double-border-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; /* Inner border */ border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
+
+/* Outer border using pseudo-element /
+.double-border-button::before {
+content: "";
+position: absolute;
+top: -6px;
+left: -6px;
+width: calc(100% + 12px);
+height: calc(100% + 12px);
+border: 2px solid #007bff; / Outer border */
+border-radius: 50px;
+opacity: 0;
+transform: scale(0.9);
+transition: all 0.4s ease;
+z-index: -1;
+}
+
+/* Hover: show outer border with glow */
+.double-border-button:hover::before {
+opacity: 1;
+transform: scale(1);
+box-shadow: 0 0 20px 5px rgba(0,123,255,0.3);
+}
+
+/* Text span for color change */
+.double-border-button span {
+position: relative;
+z-index: 1;
+transition: color 0.3s ease;
+}
+
+/* Hover text color change */
+.double-border-button:hover span {
+color: #007bff;
+}
+
+/* Click / active effect */
+.double-border-button:active {
+transform: scale(0.95);
+box-shadow: 0 0 25px 8px rgba(0,123,255,0.2);
+}
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Outline Dash Animation Button Effect"> <code type="html"> &lt;button class="dash-animate-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .dash-animate-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px dashed #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
+
+/* Dash animation using border-image trick */
+.dash-animate-button::before {
+content: "";
+position: absolute;
+top: -2px;
+left: -2px;
+width: calc(100% + 4px);
+height: calc(100% + 4px);
+border: 2px dashed #007bff;
+border-radius: 50px;
+z-index: -1;
+animation: dash-slide 1s linear infinite;
+}
+
+/* Animate the dash offset /
+@keyframes dash-slide {
+0% {
+border-spacing: 0; / fallback for smoother animation /
+border-image: linear-gradient(to right, #007bff 50%, transparent 50%) 1;
+transform: translateX(0);
+}
+100% {
+transform: translateX(15px); / Dash movement */
+}
+}
+
+/* Text span styling */
+.dash-animate-button span {
+position: relative;
+z-index: 1;
+transition: color 0.3s ease;
+}
+
+/* Hover: text color & slight scale */
+.dash-animate-button:hover span {
+color: #007bff;
+}
+
+.dash-animate-button:hover {
+transform: scale(1.05);
+}
+
+/* Click effect */
+.dash-animate-button:active {
+transform: scale(0.95);
+box-shadow: 0 0 10px rgba(0,123,255,0.2);
+}
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Fixed Animated Dashed Outline Button"> <code type="html"> &lt;button class="animated-dash-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .animated-dash-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px dashed #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; z-index: 0; }
+
+/* Animate dashed border using pseudo-element /
+.animated-dash-button::after {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border: 2px dashed #007bff;
+border-radius: 50px;
+z-index: -1; / Keep behind the text /
+pointer-events: none; / Don’t block mouse events */
+animation: dash-slide 2s linear infinite;
+}
+
+/* Keyframes for dash animation /
+@keyframes dash-slide {
+0% {
+border-spacing: 0; / fallback */
+transform: rotate(0deg);
+}
+100% {
+transform: rotate(360deg);
+}
+}
+
+/* Text span styling /
+.animated-dash-button span {
+position: relative;
+z-index: 1; / Always above the pseudo-element */
+transition: color 0.3s ease;
+}
+
+/* Hover: text color & glow /
+.animated-dash-button:hover span {
+color: white; / Change text on hover */
+}
+
+.animated-dash-button:hover {
+box-shadow: 0 0 15px rgba(0,123,255,0.5);
+transform: scale(1.05);
+}
+
+/* Click effect */
+.animated-dash-button:active {
+transform: scale(0.95);
+box-shadow: 0 0 25px rgba(0,123,255,0.4);
+}
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Outline Underline Expand Button Effect">
+
+<code type="html">
+&lt;button class="outline-underline-expand"&gt;Explore&lt;/button&gt;
+</code>
+
+<code type="css">
+.outline-underline-expand{
+padding:14px 32px;
+font-size:18px;
+font-weight:bold;
+color:#8A2BE2;
+background:transparent;
+border:2px solid #8A2BE2;
+cursor:pointer;
+position:relative;
+outline:none;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+/* underline element */
+.outline-underline-expand::after{
+content:"";
+position:absolute;
+bottom:0;
+left:50%;
+width:0;
+height:3px;
+background:#8A2BE2;
+transition:all 0.4s ease;
+transform:translateX(-50%);
+}
+
+/* hover effects */
+.outline-underline-expand:hover{
+background:#8A2BE2;
+color:white;
+}
+
+/* underline expand */
+.outline-underline-expand:hover::after{
+width:100%;
+}
+</code>
+
+<code type="js">
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Outline Border Rotate Button Effect">
+
+<code type="html">
+&lt;button class="outline-border-rotate"&gt;
+&lt;span&gt;Explore&lt;/span&gt;
+&lt;/button&gt;
+</code>
+
+<code type="css">
+.outline-border-rotate{
+padding:14px 32px;
+font-size:18px;
+font-weight:bold;
+background:transparent;
+border:2px solid #8A2BE2;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+color:#8A2BE2;
+}
+
+/* text layer */
+.outline-border-rotate span{
+position:relative;
+z-index:2;
+}
+
+/* rotating border layer */
+.outline-border-rotate::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:conic-gradient(
+transparent,
+#8A2BE2,
+transparent 30%
+);
+opacity:0;
+transition:0.3s;
+animation:rotateBorder 3s linear infinite;
+}
+
+/* activate on hover */
+.outline-border-rotate:hover::before{
+opacity:1;
+}
+
+/* rotation animation */
+@keyframes rotateBorder{
+100%{
+transform:rotate(360deg);
+}
+}
+</code>
+
+<code type="js">
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Outline Ripple Button Effect">
+
+<code type="html">
+&lt;button class="outline-ripple"&gt;
+&lt;span&gt;Explore&lt;/span&gt;
+&lt;/button&gt;
+</code>
+
+<code type="css">
+.outline-ripple{
+padding:14px 32px;
+font-size:18px;
+font-weight:bold;
+background:transparent;
+border:2px solid #8A2BE2;
+color:#8A2BE2;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+}
+
+/* text layer */
+.outline-ripple span{
+position:relative;
+z-index:2;
+}
+
+/* ripple element */
+.outline-ripple::before{
+content:"";
+position:absolute;
+top:50%;
+left:50%;
+width:0;
+height:0;
+background:rgba(138,43,226,0.25);
+border-radius:50%;
+transform:translate(-50%,-50%);
+transition:width 0.6s ease, height 0.6s ease;
+}
+
+/* ripple expand */
+.outline-ripple:hover::before{
+width:300%;
+height:300%;
+}
+</code>
+
+<code type="js">
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Outline Dash Animation Button Effect">
+
+<code type="html">
+&lt;button class="outline-dash"&gt;
+&lt;span&gt;Explore&lt;/span&gt;
+&lt;/button&gt;
+</code>
+
+<code type="css">
+.outline-dash{
+padding:14px 32px;
+font-size:18px;
+font-weight:bold;
+background:transparent;
+border:2px dashed #8A2BE2;
+color:#8A2BE2;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+transition:0.3s;
+}
+
+/* text layer */
+.outline-dash span{
+position:relative;
+z-index:2;
+}
+
+/* hover animation */
+.outline-dash:hover{
+animation:dashMove 1s linear infinite;
+}
+
+/* dash movement */
+@keyframes dashMove{
+0%{
+border-style:dashed;
+border-color:#8A2BE2;
+}
+100%{
+border-style:dashed;
+border-color:#8A2BE2;
+border-image: repeating-linear-gradient(
+90deg,
+#8A2BE2 0px,
+#8A2BE2 8px,
+transparent 8px,
+transparent 16px
+) 1;
+}
+}
+</code>
+
+<code type="js">
+</code>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 TDS CodeFx |
+  <a href="privacy.html">Privacy Policy</a> |
+  <a href="terms_and_condition.html">Terms & Conditions</a> |
+  <a href="index.html">Home</a> 
+  
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  hamburger.classList.toggle('active');
+});
+
+document.querySelectorAll(".code-editor").forEach(editor => {
+
+/* READ CODE BLOCKS */
+
+let htmlCode=""
+let cssCode=""
+
+editor.querySelectorAll('code[type="html"]').forEach(el=>{
+htmlCode+=el.textContent+"\n"
+})
+
+editor.querySelectorAll('code[type="css"]').forEach(el=>{
+cssCode+=el.textContent+"\n"
+})
+
+
+/* CREATE EDITOR */
+
+const title = editor.dataset.title || "Animation"
+
+editor.innerHTML=`
+
+<h3 class="editor-title">${title}</h3>
+
+<div class="editor-container">
+
+<div class="tabs">
+<button class="tab-btn active" data-tab="html">HTML</button>
+<button class="tab-btn" data-tab="css">CSS</button>
+</div>
+
+<textarea class="editor html"></textarea>
+<textarea class="editor css"></textarea>
+
+<div class="run-bar">
+  <button class="run-btn">Run</button>
+  <button class="copy-html">Copy HTML</button>
+  <button class="copy-css">Copy CSS</button>
+  <button class="copy-all">Copy All</button> <!-- New button -->
+</div>
+
+<iframe class="preview"></iframe>
+
+</div>
+`
+
+
+/* SELECT ELEMENTS */
+
+const html=editor.querySelector(".html")
+const css=editor.querySelector(".css")
+const preview=editor.querySelector(".preview")
+const tabs=editor.querySelectorAll(".tab-btn")
+
+html.value=htmlCode.trim()
+css.value=cssCode.trim()
+
+
+/* TAB SYSTEM */
+
+tabs.forEach(btn=>{
+
+btn.onclick=()=>{
+
+tabs.forEach(t=>t.classList.remove("active"))
+btn.classList.add("active")
+
+html.style.display="none"
+css.style.display="none"
+
+editor.querySelector("."+btn.dataset.tab).style.display="block"
+
+}
+
+})
+
+
+/* RUN CODE */
+
+editor.querySelector(".run-btn").onclick=()=>{
+
+const doc = preview.contentWindow.document
+
+doc.open()
+
+doc.write(`
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+${css.value}
+</style>
+</head>
+<body>
+
+${html.value}
+
+
+</body>
+</html>
+`)
+
+doc.close()
+
+preview.style.display="block"
+
+}
+
+
+/* COPY CODE */
+
+editor.querySelector(".copy-html").onclick=()=>{
+navigator.clipboard.writeText(html.value)
+showToast("HTML Code Copied!");
+}
+
+editor.querySelector(".copy-css").onclick=()=>{
+navigator.clipboard.writeText(css.value)
+showToast("CSS Code Copied!");
+}
+
+
+// NEW: Copy All
+editor.querySelector(".copy-all").onclick = () => {
+
+const allCode = `<!-- HTML -->
+${html.value}
+
+/* CSS */
+${css.value}`;
+
+navigator.clipboard.writeText(allCode)
+
+showToast("All Code Copied!")
+
+}
+
+})
+
+/* DROPDOWN CLICK SYSTEM */
+
+document.querySelectorAll(".dropdown > a").forEach(btn=>{
+
+btn.addEventListener("click",function(e){
+
+e.preventDefault()
+
+const parent = this.parentElement
+
+parent.classList.toggle("active")
+
+})
+
+})
+
+document.addEventListener("click",function(e){
+
+document.querySelectorAll(".dropdown").forEach(drop=>{
+
+if(!drop.contains(e.target)){
+drop.classList.remove("active")
+}
+
+})
+
+})
+
+
+function showToast(message){
+
+const toast = document.getElementById("toast")
+
+toast.textContent = message
+toast.classList.add("show")
+
+setTimeout(()=>{
+toast.classList.remove("show")
+},2000)
+
+}
+
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDS CodeFx | Json Formet Tool</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+/* ===== BRAND COLORS ===== */
+:root{
+  --pink:#BF2BE2;
+  --purple:#8A2BE2;
+  --blue:#1E90FF;
+  --dark:#111;
+  --light:#ffffff;
+  --gray:#f5f7fa;
+}
+
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#ffffff;
+  color:#222;
+}
+
+/* ===== HEADER ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logo img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+nav a{
+  margin-left:2rem;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0;
+  height:2px;
+  background:white;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index:1100;
+}
+
+.hamburger span {
+  display:block;
+  width:25px;
+  height:3px;
+  margin:5px 0;
+  background:white;
+  transition:0.3s;
+}
+
+.hamburger.active span:nth-child(1){
+  transform:rotate(45deg) translate(5px,5px);
+}
+.hamburger.active span:nth-child(2){
+  opacity:0;
+}
+.hamburger.active span:nth-child(3){
+  transform:rotate(-45deg) translate(5px,-5px);
+}
+
+/* Nav default desktop */
+nav{
+  display:flex;
+  gap:2rem;
+  align-items:center;
+}
+
+/* Mobile nav */
+@media(max-width:1080px){
+  .hamburger{display:flex;}
+  nav{
+    position:absolute;
+    top:100%;
+    right:0;
+    width:100%;
+    flex-direction:column;
+    align-items:center;
+    background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+    display:none;
+    padding:1rem 0;
+  }
+  nav.active{display:flex;}
+  nav a{
+    margin:1rem 0;
+    font-size:1.2rem;
+  }
+}
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  padding:5rem 2rem;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
+}
+
+.hero h1{
+  font-size:2.5rem;
+  margin-bottom:1rem;
+}
+
+.hero p{
+  font-size:1.2rem;
+  margin-bottom:2rem;
+}
+
+.hero button{
+  padding:0.8rem 2rem;
+  border:none;
+  border-radius:50px;
+  background:white;
+  color:var(--purple);
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.hero button:hover{
+  background:var(--blue);
+  color:white;
+}
+
+/* ===== SECTIONS ===== */
+section{
+  padding:4rem 2rem;
+}
+
+section h2{
+  text-align:center;
+  font-size:2rem;
+  margin-bottom:2rem;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+
+/* ===== CARDS ===== */
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:2rem;
+  text-align:center;
+  transition:0.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.07);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.card h3{
+  margin-bottom:1rem;
+  color:var(--purple);
+}
+
+.card p{
+  color:#555;
+  font-size:0.95rem;
+}
+
+.card button{
+  margin-top:1rem;
+  padding:0.6rem 1.5rem;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card button:hover{
+  transform:scale(1.05);
+}
+
+/* ===== JSON TOOL ===== */
+
+#json-tool textarea{
+  width:100%;
+  height:250px;
+  background:#f5f7fa;
+  border:2px solid var(--purple);
+  padding:15px;
+  font-family:monospace;
+  font-size:14px;
+  border-radius:12px;
+  resize:vertical;
+}
+#json-tool button{
+  margin:5px 5px 5px 0;
+  padding:10px 18px;
+  border:none;
+  border-radius:30px;
+  background:#1E90FF;       /* default blue */
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* Hover and click effect */
+#json-tool button:hover,
+#json-tool button:active{
+  background:#8A2BE2;       /* purple on hover/click */
+}
+.tool-output{
+  background:#f5f7fa;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+  white-space:pre-wrap;
+  font-family:monospace;
+  border:1px solid #ddd;
+}
+
+.success{ color:#22c55e; }
+.error{ color:#ef4444; }
+
+.tree ul{
+  list-style:none;
+  padding-left:20px;
+}
+.tree li{
+  margin:3px 0;
+}
+.key{ color:var(--blue); }
+.string{ color:#22c55e; }
+.number{ color:#facc15; }
+.boolean{ color:#f97316; }
+.null{ color:#f43f5e; }
+
+
+/* ===== FOOTER ===== */
+footer{
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:2rem;
+}
+
+footer a{
+  color:var(--blue);
+  text-decoration:none;
+  margin:0 10px;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+     <a href="index.html"> <img src="TDS codefx final 3 use this logo .png (2).png" alt="Logo"></a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav id="nav-menu">
+   <a href="index.html">Home</a>
+<a href="index.html#tools">Tools</a>
+
+<a href="web_index.animation.html">Animations</a>
+
+<a href="index.html#contact">Contact</a>
+
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>JSON Formatter & Validator</h1>
+  <p>Easily format, validate, and explore your JSON data.</p>
+ <button onclick="document.querySelector('#content').scrollIntoView({behavior:'smooth'})">
+Explore
+</button>
+</section>
+
+
+<!-- JSON TOOL SECTION -->
+<section id="json-tool">
+  <h2>JSON Formatter & Validator</h2>
+
+  <div class="card" style="max-width:1000px;margin:auto;">
+    
+    <textarea id="jsonInput" placeholder='Paste JSON here...'></textarea>
+
+    <div style="margin-top:15px;">
+      <button onclick="formatJSON()">Format</button>
+      <button onclick="minifyJSON()">Minify</button>
+      <button onclick="validateJSON()">Validate</button>
+      <button onclick="copyJSON()">Copy</button>
+      <button onclick="downloadJSON()">Download</button>
+      <button onclick="showTree()">Tree View</button>
+    </div>
+
+    <div id="message" style="margin-top:10px;font-weight:600;"></div>
+
+    <div id="output" class="tool-output"></div>
+    <div id="treeOutput" class="tool-output tree" style="display:none;"></div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 TDS CodeFx |
+  <a href="privacy.html">Privacy Policy</a> |
+  <a href="terms_and_condition.html">Terms & Conditions</a> |
+  <a href="index.html">Home</a> 
+ 
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  hamburger.classList.toggle('active');
+});
+
+
+function formatJSON(){
+    try{
+        let input=document.getElementById("jsonInput").value;
+        let parsed=JSON.parse(input);
+        let formatted=JSON.stringify(parsed,null,4);
+        document.getElementById("output").textContent=formatted;
+        document.getElementById("treeOutput").style.display="none";
+        document.getElementById("output").style.display="block";
+        showMessage("Valid JSON ✔","success");
+    }catch(e){
+        showMessage("Invalid JSON ❌","error");
+    }
+}
+
+function minifyJSON(){
+    try{
+        let input=document.getElementById("jsonInput").value;
+        let parsed=JSON.parse(input);
+        let minified=JSON.stringify(parsed);
+        document.getElementById("output").textContent=minified;
+        document.getElementById("treeOutput").style.display="none";
+        document.getElementById("output").style.display="block";
+        showMessage("Minified Successfully ✔","success");
+    }catch(e){
+        showMessage("Invalid JSON ❌","error");
+    }
+}
+
+function validateJSON(){
+    try{
+        JSON.parse(document.getElementById("jsonInput").value);
+        showMessage("JSON is Valid ✔","success");
+    }catch(e){
+        showMessage("Invalid JSON ❌","error");
+    }
+}
+
+function copyJSON(){
+    let text=document.getElementById("output").textContent;
+    navigator.clipboard.writeText(text);
+    showMessage("Copied to Clipboard ✔","success");
+}
+
+function downloadJSON(){
+    let content=document.getElementById("output").textContent;
+    let blob=new Blob([content],{type:"application/json"});
+    let a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);
+    a.download="formatted.json";
+    a.click();
+    showMessage("Download Started ✔","success");
+}
+
+function showMessage(msg,type){
+    let el=document.getElementById("message");
+    el.textContent=msg;
+    el.className=type;
+}
+
+function showTree(){
+    try{
+        let input=document.getElementById("jsonInput").value;
+        let parsed=JSON.parse(input);
+        document.getElementById("treeOutput").innerHTML=buildTree(parsed);
+        document.getElementById("output").style.display="none";
+        document.getElementById("treeOutput").style.display="block";
+        showMessage("Tree View Loaded ✔","success");
+    }catch(e){
+        showMessage("Invalid JSON ❌","error");
+    }
+}
+
+function buildTree(obj){
+    if(typeof obj==="object" && obj!==null){
+        let html="<ul>";
+        for(let key in obj){
+            html+="<li><span class='key'>"+key+"</span>: "+buildTree(obj[key])+"</li>";
+        }
+        html+="</ul>";
+        return html;
+    }else{
+        if(typeof obj==="string") return "<span class='string'>\""+obj+"\"</span>";
+        if(typeof obj==="number") return "<span class='number'>"+obj+"</span>";
+        if(typeof obj==="boolean") return "<span class='boolean'>"+obj+"</span>";
+        if(obj===null) return "<span class='null'>null</span>";
+        return obj;
+    }
+}
+
+
+</script>
+
+</body>
+</html>

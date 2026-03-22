@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDS CodeFx | Privacy Policy</title>
+<meta name="description" content="Read the Privacy Policy of TDS CodeFx. Learn how we handle your data, cookies, and personal information while you use our online tools like JSON Formatter, Word Counter, Animation Code Snippets, and Google Forms.">
+<meta name="keywords" content="Privacy Policy, Cookies, Online Tools, JSON Formatter, Word Counter, Animation Snippets, Google Forms, Data Protection, TDS CodeFx">
+<style>
+/* ===== BRAND COLORS ===== */
+:root{
+  --pink:#BF2BE2;
+  --purple:#8A2BE2;
+  --blue:#1E90FF;
+  --dark:#111;
+  --light:#ffffff;
+  --gray:#f5f7fa;
+}
+
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#ffffff;
+  color:#222;
+}
+
+/* ===== HEADER ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logo img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+nav a{
+  margin-left:2rem;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-3px;
+  width:0;
+  height:2px;
+  background:white;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* ===== HERO / HEADER BANNER ===== */
+.hero{
+  text-align:center;
+  padding:4rem 2rem;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
+  border-radius:0 0 20px 20px;
+  margin-bottom:2rem;
+}
+
+.hero h1{
+  font-size:2.5rem;
+  margin-bottom:1rem;
+}
+
+.hero p{
+  font-size:1rem;
+  max-width:700px;
+  margin:0 auto;
+  line-height:1.6;
+}
+
+/* ===== CONTENT ===== */
+.content{
+  max-width:900px;
+  margin:0 auto;
+  padding:2rem;
+  background:var(--gray);
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+.content h2{
+  color:var(--purple);
+  margin-bottom:0.8rem;
+  font-size:1.6rem;
+}
+
+.content p{
+  margin-bottom:1.2rem;
+  line-height:1.7;
+  color:#333;
+}
+
+.content a{
+  color:var(--blue);
+  text-decoration:none;
+}
+
+.content a:hover{
+  text-decoration:underline;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:2rem;
+  margin-top:2rem;
+}
+
+footer a{
+  color:var(--blue);
+  text-decoration:none;
+  margin:0 10px;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero h1{font-size:2rem;}
+  nav a{margin-left:1rem;}
+  .content{padding:1rem;}
+}
+
+
+
+/* Hamburger initially hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1100; /* higher than nav */
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+  background: white;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Nav default desktop */
+nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Mobile styles */
+@media(max-width:1080px) {
+  .hamburger {
+    display: flex; /* show hamburger on mobile */
+  }
+
+  nav {
+    position: absolute;
+    top: 100%; /* just below header */
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
+    display: none; /* hidden by default */
+    padding: 1rem 0;
+  }
+
+  nav.active {
+    display: flex; /* show menu on click */
+  }
+
+  nav a {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  header {
+    position: relative; /* required for nav absolute positioning */
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <a href="index.html"> <img src="TDS codefx final 3 use this logo .png (2).png" alt="Logo"></a>
+  </div>
+
+  <!-- Hamburger icon -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Nav menu -->
+  <nav id="nav-menu">
+   <a href="index.html">Home</a>
+<a href="index.html#tools">Tools</a>
+
+<a href="web_index.animation.html">Animations</a>
+
+<a href="index.html#contact">Contact</a>
+
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Privacy Policy</h1>
+  <p>Understand how TDS CodeFx collects, uses, and protects your information while providing our tools and services worldwide.</p>
+</section>
+
+<!-- CONTENT -->
+<section class="content">
+  <h2>Information We Collect</h2>
+  <p>We may collect non-personal information such as browser type, IP address, and device information, as well as data you voluntarily provide while using our tools (JSON Formatter, Word Counter, Animation Snippets, Google Forms) to improve your experience.</p>
+
+  <h2>How We Use Your Information</h2>
+  <p>Your data is used to personalize your experience, improve website functionality, provide updates, and analyze usage to enhance our services. We do not sell or share personal information for marketing purposes.</p>
+
+  <h2>Cookies</h2>
+  <p>We use cookies to remember user preferences (like dark/light mode or last tool used), analyze traffic, and provide a better browsing experience. You can manage or disable cookies in your browser settings at any time.</p>
+
+  <h2>Data Protection</h2>
+  <p>We implement industry-standard measures to protect your data from unauthorized access, alteration, or disclosure. However, no online service can guarantee 100% security.</p>
+
+  <h2>Third-Party Services</h2>
+  <p>We may use third-party services such as Google Forms and Google Analytics. These services may collect data according to their own privacy policies.</p>
+
+  <h2>International Audience</h2>
+  <p>We comply with international privacy regulations, including GDPR (EU) and CCPA (California, USA), ensuring global users’ rights to access, modify, or request deletion of their personal data.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>TDS CodeFx reserves the right to update this Privacy Policy at any time. Any changes will be posted on this page.</p>
+
+  <h2>Contact Us</h2>
+  <p>If you have any questions regarding this Privacy Policy, please <a href="index.html#contact">contact us</a> or fill out our Google Form.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 TDS CodeFx |
+  <a href="privacy.html">Privacy Policy</a> |
+  <a href="terms_and_condition.html">Terms & Conditions</a> |
+  <a href="index.html">Home</a>
+</footer>
+
+</body>
+<script>
+ const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active'); // show/hide nav
+  hamburger.classList.toggle('active'); // animate hamburger
+});
+</script>
+</html>

@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDS CodeFx | CSS Slide Button Animation</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+/* ===== BRAND COLORS ===== */
+:root{
+  --pink:#BF2BE2;
+  --purple:#8A2BE2;
+  --blue:#1E90FF;
+  --dark:#111;
+  --light:#ffffff;
+  --gray:#f5f7fa;
+}
+
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#ffffff;
+  color:#222;
+}
+
+/* ===== HEADER ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logo img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+nav a{
+  margin-left:2rem;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0;
+  height:2px;
+  background:white;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+
+/* TOAST NOTIFICATION */
+
+#toast{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%) translateY(20px);
+background:#111;
+color:#fff;
+padding:12px 25px;
+border-radius:30px;
+font-size:14px;
+opacity:0;
+pointer-events:none;
+transition:0.35s;
+z-index:9999;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+#toast.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+
+
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index:1100;
+}
+
+.hamburger span {
+  display:block;
+  width:25px;
+  height:3px;
+  margin:5px 0;
+  background:white;
+  transition:0.3s;
+}
+
+.hamburger.active span:nth-child(1){
+  transform:rotate(45deg) translate(5px,5px);
+}
+.hamburger.active span:nth-child(2){
+  opacity:0;
+}
+.hamburger.active span:nth-child(3){
+  transform:rotate(-45deg) translate(5px,-5px);
+}
+
+
+/* ===== DROPDOWN ===== */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
+position:absolute;
+top:35px;
+left:0;
+background:white;
+min-width:180px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+display:none;
+flex-direction:column;
+overflow:hidden;
+}
+
+.dropdown-menu a{
+color:#333;
+padding:10px 15px;
+text-decoration:none;
+display:block;
+font-weight:500;
+}
+
+.dropdown-menu a:hover{
+background:#f5f5f5;
+color:var(--purple);
+}
+
+/* DROPDOWN FIX */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
+position:absolute;
+top:40px;
+left:0;
+background:white;
+min-width:180px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+display:none;
+flex-direction:column;
+overflow:hidden;
+z-index:1000;
+}
+
+.dropdown-menu a{
+color:#333;
+padding:10px 15px;
+text-decoration:none;
+display:block;
+font-weight:500;
+}
+
+.dropdown-menu a:hover{
+background:#f5f5f5;
+color:var(--purple);
+}
+
+.dropdown.active .dropdown-menu{
+display:block;
+}
+
+
+
+
+/* Nav default desktop */
+nav{
+  display:flex;
+  gap:2rem;
+  align-items:center;
+}
+
+/* Mobile nav */
+@media(max-width:1080px){
+  .hamburger{display:flex;}
+  nav{
+    position:absolute;
+    top:100%;
+    right:0;
+    width:100%;
+    flex-direction:column;
+    align-items:center;
+    background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+    display:none;
+    padding:1rem 0;
+  }
+  nav.active{display:flex;}
+  nav a{
+    margin:1rem 0;
+    font-size:1.2rem;
+  }
+}
+
+
+@media(max-width:1080px){
+
+.dropdown-menu{
+position:static;
+background:transparent;
+box-shadow:none;
+display:none;
+}
+
+.dropdown.active .dropdown-menu{
+display:block;
+}
+
+.dropdown-menu a{
+color:white;
+}
+
+.dropdown-menu a:hover{
+background:rgba(255,255,255,0.15);
+color:white;
+}
+}
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  padding:5rem 2rem;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
+}
+
+.hero h1{
+  font-size:2.5rem;
+  margin-bottom:1rem;
+}
+
+.hero p{
+  font-size:1.2rem;
+  margin-bottom:2rem;
+}
+
+.hero button{
+  padding:0.8rem 2rem;
+  border:none;
+  border-radius:50px;
+  background:white;
+  color:var(--purple);
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.hero button:hover{
+  background:var(--blue);
+  color:white;
+}
+
+/* ===== SECTIONS ===== */
+section{
+  padding:4rem 2rem;
+}
+
+section h2{
+  text-align:center;
+  font-size:2rem;
+  margin-bottom:2rem;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+
+/* ===== CARDS ===== */
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:2rem;
+  text-align:center;
+  transition:0.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.07);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.card h3{
+  margin-bottom:1rem;
+  color:var(--purple);
+}
+
+.card p{
+  color:#555;
+  font-size:0.95rem;
+}
+
+.card button{
+  margin-top:1rem;
+  padding:0.6rem 1.5rem;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card button:hover{
+  transform:scale(1.05);
+}
+
+:root{
+--pink:#BF2BE2;
+--purple:#8A2BE2;
+--blue:#1E90FF;
+}
+
+.code-editor{
+max-width:1000px;
+margin:40px auto;
+}
+
+.editor-container{
+border-radius:12px;
+overflow:hidden;
+background:white;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.tabs{
+display:flex;
+background:#eee;
+}
+
+.tabs button{
+flex:1;
+padding:12px;
+border:none;
+background:#eee;
+cursor:pointer;
+font-weight:600;
+}
+
+.tabs button.active{
+background:white;
+color:#8A2BE2;
+border-bottom:3px solid #8A2BE2;
+}
+
+.editor{
+width:100%;
+height:200px;
+border:none;
+outline:none;
+padding:12px;
+font-family:monospace;
+display:none;
+}
+
+.editor.html{
+display:block;
+}
+
+.editor-title{
+max-width:1000px;
+margin:20px auto 10px;
+font-size:1.3rem;
+color:#8A2BE2;
+font-weight:700;
+}
+
+.run-bar{
+text-align:center;
+padding:12px;
+border-top:1px solid #ddd;
+}
+
+.run-bar button{
+padding:8px 22px;
+margin:5px;
+border:none;
+border-radius:20px;
+background:linear-gradient(90deg,var(--pink),var(--blue));
+color:white;
+cursor:pointer;
+}
+
+.preview{
+width:100%;
+height:350px;
+border-top:2px solid #ddd;
+display:none;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:2rem;
+}
+
+footer a{
+  color:var(--blue);
+  text-decoration:none;
+  margin:0 10px;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+     <a href="index.html"> <img src="TDS codefx final 3 use this logo .png (2).png" alt="Logo"></a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+ <nav id="nav-menu">
+
+<a href="index.html">Home</a>
+<a href="index.html#tools">Tools</a>
+
+<a href="web_index.animation.html">Animations</a>
+
+<a href="index.html#contact">Contact</a>
+
+
+</nav>
+</header>
+
+<div id="toast"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>CSS Slide Button Effects</h1>
+<p>Explore creative CSS Slide Button animations with live preview and copy-ready code for your projects.</p>
+  <button onclick="document.querySelector('.code-editor').scrollIntoView({behavior:'smooth'})">
+Explore
+</button>
+</section>
+
+<!-- CONTENT SECTION -->
+
+<section class="code-editor" data-title="Slide Fill Left Button Effect">
+<code type="html">
+&lt;button class="slide-fill-left"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-fill-left{
+padding:15px 35px;
+font-size:18px;
+font-weight:bold;
+color:#333;
+background:#ffffff;
+border:2px solid #ff0080;
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+/* Gradient layer */
+.slide-fill-left::before{
+content:"";
+position:absolute;
+top:0;
+right:0; /* Right side se start */
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#ff0080,#7928ca,#007bff);
+z-index:0;
+transition:width 0.4s ease;
+}
+
+/* Text above gradient */
+.slide-fill-left span{
+position:relative;
+z-index:1;
+}
+
+/* Hover effect */
+.slide-fill-left:hover::before{
+width:100%; /* Leftward fill */
+}
+
+.slide-fill-left:hover{
+color:#fff;
+transform:scale(1.05);
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Slide Fill Right Button Effect">
+<code type="html">
+&lt;button class="slide-fill-right"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-fill-right{
+padding:15px 35px;
+font-size:18px;
+font-weight:bold;
+color:#333;
+background:#ffffff;
+border:2px solid #ff0080;
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+/* Gradient layer */
+.slide-fill-right::before{
+content:"";
+position:absolute;
+top:0;
+left:0; /* Left side se start */
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#ff0080,#7928ca,#007bff);
+z-index:0;
+transition:width 0.4s ease;
+}
+
+/* Text above gradient */
+.slide-fill-right span{
+position:relative;
+z-index:1;
+}
+
+/* Hover effect */
+.slide-fill-right:hover::before{
+width:100%; /* Rightward fill */
+}
+
+.slide-fill-right:hover{
+color:#fff;
+transform:scale(1.05);
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Slide Fill Top Button Effect">
+<code type="html">
+&lt;button class="slide-fill-top"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-fill-top{
+padding:15px 35px;
+font-size:18px;
+font-weight:bold;
+color:#333;
+background:#ffffff;
+border:2px solid #ff0080;
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+/* Gradient layer */
+.slide-fill-top::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:0%; /* Start hidden */
+background:linear-gradient(180deg,#ff0080,#7928ca,#007bff);
+z-index:0;
+transition:height 0.4s ease;
+}
+
+/* Text above gradient */
+.slide-fill-top span{
+position:relative;
+z-index:1;
+}
+
+/* Hover effect */
+.slide-fill-top:hover::before{
+height:100%; /* Top → Bottom fill */
+}
+
+.slide-fill-top:hover{
+color:#fff;
+transform:scale(1.05);
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Slide Fill Bottom Button Effect">
+<code type="html">
+&lt;button class="slide-fill-bottom"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-fill-bottom{
+padding:15px 35px;
+font-size:18px;
+font-weight:bold;
+color:#333;
+background:#ffffff;
+border:2px solid #ff0080;
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+/* Gradient layer */
+.slide-fill-bottom::before{
+content:"";
+position:absolute;
+bottom:0; /* Bottom se start */
+left:0;
+width:100%;
+height:0%; /* Hidden initially */
+background:linear-gradient(180deg,#ff0080,#7928ca,#007bff);
+z-index:0;
+transition:height 0.4s ease;
+}
+
+/* Text above gradient */
+.slide-fill-bottom span{
+position:relative;
+z-index:1;
+}
+
+/* Hover effect */
+.slide-fill-bottom:hover::before{
+height:100%; /* Bottom → Top fill */
+}
+
+.slide-fill-bottom:hover{
+color:#fff;
+transform:scale(1.05);
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Diagonal Center Expand Gradient Fill Button Effect">
+<code type="html">
+&lt;button class="center-gradient-fill"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.center-gradient-fill{
+padding:15px 40px;
+font-size:18px;
+font-weight:bold;
+color:#333;
+background:#ffffff;
+border:2px solid #ff0080;
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+/* Gradient layer */
+.center-gradient-fill::before{
+content:"";
+position:absolute;
+top:50%;
+left:50%;
+width:0%;
+height:0%;
+background:linear-gradient(135deg,#ff0080,#7928ca,#007bff);
+z-index:0;
+border-radius:50%;
+transform:translate(-50%,-50%);
+transition:all 0.5s ease;
+}
+
+/* Text above gradient */
+.center-gradient-fill span{
+position:relative;
+z-index:1;
+transition:color 0.3s ease;
+}
+
+/* Hover Effect */
+.center-gradient-fill:hover::before{
+width:300%;
+height:300%; /* Center expand fill */
+}
+
+.center-gradient-fill:hover span{
+color:#fff;
+transform:scale(1.05);
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Slide Border Reveal Button Effect">
+<code type="html">
+&lt;button class="slide-border-reveal"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-border-reveal{
+padding:15px 40px;
+font-size:18px;
+font-weight:bold;
+color:#333;
+background:#ffffff;
+border:2px solid transparent; /* Initially transparent */
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+/* Horizontal Borders */
+.slide-border-reveal::before,
+.slide-border-reveal::after{
+content:"";
+position:absolute;
+height:2px;
+width:0%;
+background:linear-gradient(90deg,#ff0080,#7928ca,#007bff);
+top:0;
+left:0;
+transition:width 0.4s ease;
+}
+
+.slide-border-reveal::after{
+top:auto;
+bottom:0;
+}
+
+/* Vertical Borders */
+.slide-border-reveal span::before,
+.slide-border-reveal span::after{
+content:"";
+position:absolute;
+width:2px;
+height:0%;
+background:linear-gradient(180deg,#ff0080,#7928ca,#007bff);
+top:0;
+left:0;
+transition:height 0.4s ease;
+}
+
+.slide-border-reveal span::after{
+left:auto;
+right:0;
+}
+
+/* Positioning span pseudo elements */
+.slide-border-reveal span{
+position:relative;
+display:inline-block;
+}
+
+/* Hover Effect */
+.slide-border-reveal:hover::before,
+.slide-border-reveal:hover::after{
+width:100%; /* Horizontal borders expand */
+}
+
+.slide-border-reveal:hover span::before,
+.slide-border-reveal:hover span::after{
+height:100%; /* Vertical borders expand */
+}
+
+.slide-border-reveal:hover{
+color:#fff;
+transform:scale(1.05);
+background:linear-gradient(90deg,#ff0080,#7928ca,#007bff); /* Optional fill */
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Slide Text Swap Button Effect Improved">
+<code type="html">
+&lt;button class="slide-text-swap-improved"&gt;
+  &lt;span class="text"&gt;Get Started&lt;/span&gt;
+  &lt;span class="hover-text"&gt;Go Now&lt;/span&gt;
+&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-text-swap-improved{
+padding:20px 60px; /* Bigger button */
+font-size:16px; /* Slightly smaller text */
+font-weight:600;
+color:#fff;
+background:#ff0080;
+border:none;
+border-radius:60px; /* More rounded */
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+min-width:200px; /* Ensures button width */
+}
+
+/* Base Text */
+.slide-text-swap-improved .text{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+transition:transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Hover Text */
+.slide-text-swap-improved .hover-text{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,100%);
+opacity:0;
+transition:transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Hover Effect */
+.slide-text-swap-improved:hover .text{
+transform:translate(-50%,-150%);
+opacity:0;
+}
+
+.slide-text-swap-improved:hover .hover-text{
+transform:translate(-50%,-50%);
+opacity:1;
+}
+
+/* Optional Gradient Border */
+.slide-text-swap-improved::before{
+content:"";
+position:absolute;
+inset:0;
+border-radius:60px;
+padding:3px; /* Slightly thicker border */
+background:linear-gradient(90deg,#ff0080,#7928ca,#007bff);
+-webkit-mask: 
+  linear-gradient(#fff 0 0) content-box, 
+  linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+pointer-events:none;
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Slide Background Sweep Button Effect">
+<code type="html">
+&lt;button class="slide-bg-sweep"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-bg-sweep{
+padding:15px 50px;
+font-size:16px;
+font-weight:600;
+color:#fff;
+background:#ff0080;
+border:none;
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:color 0.3s ease, transform 0.3s ease;
+}
+
+/* Gradient sweep layer */
+.slide-bg-sweep::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%; /* Start off left */
+width:100%;
+height:100%;
+background:linear-gradient(120deg,#ff0080,#7928ca,#007bff);
+z-index:0;
+transition:all 0.5s ease;
+transform:skewX(-20deg); /* Angled sweep */
+}
+
+/* Text above gradient */
+.slide-bg-sweep span{
+position:relative;
+z-index:1;
+transition:color 0.3s ease;
+}
+
+/* Hover Effect */
+.slide-bg-sweep:hover::before{
+left:0; /* Sweep across button */
+}
+
+.slide-bg-sweep:hover{
+color:#fff;
+transform:scale(1.05); /* Slight zoom */
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Slide Double Fill Button Effect">
+<code type="html">
+&lt;button class="slide-double-fill"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-double-fill{
+padding:15px 50px;
+font-size:16px;
+font-weight:600;
+color:#ff0080;
+background:#fff;
+border:2px solid #ff0080;
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+/* Left fill */
+.slide-double-fill::before{
+content:"";
+position:absolute;
+top:0;
+left:-50%;
+width:50%;
+height:100%;
+background:#ff0080;
+transition:0.4s ease;
+z-index:0;
+}
+
+/* Right fill */
+.slide-double-fill::after{
+content:"";
+position:absolute;
+top:0;
+right:-50%;
+width:50%;
+height:100%;
+background:#ff0080;
+transition:0.4s ease;
+z-index:0;
+}
+
+/* Text above layers */
+.slide-double-fill span{
+position:relative;
+z-index:1;
+}
+
+/* Hover */
+.slide-double-fill:hover::before{
+left:0;
+}
+
+.slide-double-fill:hover::after{
+right:0;
+}
+
+.slide-double-fill:hover{
+color:#fff;
+transform:scale(1.05);
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Slide Curtain Open Button">
+<code type="html">
+&lt;button class="slide-curtain"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-curtain{
+padding:15px 45px;
+font-size:16px;
+font-weight:600;
+color:#fff;
+background:#111;
+border:none;
+border-radius:50px;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+}
+
+.slide-curtain::before,
+.slide-curtain::after{
+content:"";
+position:absolute;
+top:0;
+width:50%;
+height:100%;
+background:#ff0080;
+transition:0.4s;
+z-index:0;
+}
+
+.slide-curtain::before{ left:0; }
+.slide-curtain::after{ right:0; }
+
+.slide-curtain span{
+position:relative;
+z-index:1;
+}
+
+.slide-curtain:hover::before{
+transform:translateX(-100%);
+}
+
+.slide-curtain:hover::after{
+transform:translateX(100%);
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Slide Glow Button Effect">
+<code type="html">
+&lt;button class="slide-glow-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-glow-button{
+padding:15px 45px;
+font-size:16px;
+font-weight:600;
+color:#fff;
+background:#111;
+border:none;
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+/* Glow sliding layer */
+.slide-glow-button::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,
+transparent,
+rgba(255,255,255,0.6),
+transparent);
+transition:0.6s;
+}
+
+/* Keep text above glow */
+.slide-glow-button span{
+position:relative;
+z-index:1;
+}
+
+/* Hover */
+.slide-glow-button:hover::before{
+left:100%;
+}
+
+.slide-glow-button:hover{
+box-shadow:0 0 15px #ff0080,
+           0 0 30px #7928ca;
+transform:scale(1.05);
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Slide Split Color Swap Button">
+<code type="html">
+&lt;button class="slide-split-swap"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-split-swap{
+padding:15px 45px;
+font-size:16px;
+font-weight:600;
+color:#fff;
+background:#7928ca;
+border:none;
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:0.3s;
+}
+
+/* Top layer */
+.slide-split-swap::before{
+content:"";
+position:absolute;
+top:-100%;
+left:0;
+width:100%;
+height:50%;
+background:#ff0080;
+transition:0.4s;
+z-index:0;
+}
+
+/* Bottom layer */
+.slide-split-swap::after{
+content:"";
+position:absolute;
+bottom:-100%;
+left:0;
+width:100%;
+height:50%;
+background:#007bff;
+transition:0.4s;
+z-index:0;
+}
+
+/* Text above */
+.slide-split-swap span{
+position:relative;
+z-index:1;
+}
+
+/* Hover */
+.slide-split-swap:hover::before{
+top:0;
+}
+
+.slide-split-swap:hover::after{
+bottom:0;
+}
+
+.slide-split-swap:hover{
+transform:scale(1.05);
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+<section class="code-editor" data-title="Unique Morph Glow Button with White Text Hover"> <code type="html"> &lt;button class="morph-glow-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .morph-glow-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; /* Initial text color */ background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
+
+/* Inner gradient slide */
+.morph-glow-button::before {
+content: "";
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(120deg, rgba(0,123,255,0.2), rgba(0,123,255,0.6), rgba(0,123,255,0.2));
+transition: all 0.5s ease;
+z-index: 0;
+}
+
+/* Text span styling */
+.morph-glow-button span {
+position: relative;
+z-index: 1;
+transition: color 0.3s ease;
+}
+
+/* Hover: morph & glow */
+.morph-glow-button:hover {
+transform: scale(1.08) rotate(-1deg);
+box-shadow: 0 0 20px 5px rgba(0,123,255,0.5);
+}
+
+/* Slide inner gradient on hover */
+.morph-glow-button:hover::before {
+left: 0;
+}
+
+/* Change text color on hover */
+.morph-glow-button:hover span {
+color: white;
+}
+
+/* Click / active animation */
+.morph-glow-button:active {
+transform: scale(0.95) rotate(0deg);
+box-shadow: 0 0 25px 8px rgba(0,123,255,0.4);
+transition: all 0.1s ease;
+}
+</code>
+
+</section>
+
+<section class="code-editor" data-title="Diagonal Split Slide Button Effect">
+<code type="html">
+&lt;button class="slide-diagonal-split"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
+</code>
+
+<code type="css">
+.slide-diagonal-split{
+padding:15px 45px;
+font-size:16px;
+font-weight:600;
+color:#fff;
+background:#111;
+border:none;
+border-radius:50px;
+cursor:pointer;
+outline:none;
+position:relative;
+overflow:hidden;
+transition:0.3s;
+}
+
+/* First diagonal layer */
+.slide-diagonal-split::before{
+content:"";
+position:absolute;
+top:-100%;
+left:-100%;
+width:200%;
+height:200%;
+background:#ff0080;
+transform:rotate(45deg);
+transition:0.5s;
+z-index:0;
+}
+
+/* Second diagonal layer */
+.slide-diagonal-split::after{
+content:"";
+position:absolute;
+bottom:-100%;
+right:-100%;
+width:200%;
+height:200%;
+background:#007bff;
+transform:rotate(45deg);
+transition:0.5s;
+z-index:0;
+}
+
+/* Text */
+.slide-diagonal-split span{
+position:relative;
+z-index:1;
+}
+
+/* Hover */
+.slide-diagonal-split:hover::before{
+top:-20%;
+left:-20%;
+}
+
+.slide-diagonal-split:hover::after{
+bottom:-20%;
+right:-20%;
+}
+
+.slide-diagonal-split:hover{
+transform:scale(1.05);
+}
+</code>
+
+<code type="js">
+</code>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+  © 2026 TDS CodeFx |
+  <a href="privacy.html">Privacy Policy</a> |
+  <a href="terms_and_condition.html">Terms & Conditions</a> |
+  <a href="index.html">Home</a> 
+  
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  hamburger.classList.toggle('active');
+});
+
+document.querySelectorAll(".code-editor").forEach(editor => {
+
+/* READ CODE BLOCKS */
+
+let htmlCode=""
+let cssCode=""
+
+editor.querySelectorAll('code[type="html"]').forEach(el=>{
+htmlCode+=el.textContent+"\n"
+})
+
+editor.querySelectorAll('code[type="css"]').forEach(el=>{
+cssCode+=el.textContent+"\n"
+})
+
+
+/* CREATE EDITOR */
+
+const title = editor.dataset.title || "Animation"
+
+editor.innerHTML=`
+
+<h3 class="editor-title">${title}</h3>
+
+<div class="editor-container">
+
+<div class="tabs">
+<button class="tab-btn active" data-tab="html">HTML</button>
+<button class="tab-btn" data-tab="css">CSS</button>
+</div>
+
+<textarea class="editor html"></textarea>
+<textarea class="editor css"></textarea>
+
+<div class="run-bar">
+  <button class="run-btn">Run</button>
+  <button class="copy-html">Copy HTML</button>
+  <button class="copy-css">Copy CSS</button>
+  <button class="copy-all">Copy All</button> <!-- New button -->
+</div>
+
+<iframe class="preview"></iframe>
+
+</div>
+`
+
+
+/* SELECT ELEMENTS */
+
+const html=editor.querySelector(".html")
+const css=editor.querySelector(".css")
+const preview=editor.querySelector(".preview")
+const tabs=editor.querySelectorAll(".tab-btn")
+
+html.value=htmlCode.trim()
+css.value=cssCode.trim()
+
+
+/* TAB SYSTEM */
+
+tabs.forEach(btn=>{
+
+btn.onclick=()=>{
+
+tabs.forEach(t=>t.classList.remove("active"))
+btn.classList.add("active")
+
+html.style.display="none"
+css.style.display="none"
+
+editor.querySelector("."+btn.dataset.tab).style.display="block"
+
+}
+
+})
+
+
+/* RUN CODE */
+
+editor.querySelector(".run-btn").onclick=()=>{
+
+const doc = preview.contentWindow.document
+
+doc.open()
+
+doc.write(`
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+${css.value}
+</style>
+</head>
+<body>
+
+${html.value}
+
+
+</body>
+</html>
+`)
+
+doc.close()
+
+preview.style.display="block"
+
+}
+
+
+/* COPY CODE */
+
+editor.querySelector(".copy-html").onclick=()=>{
+navigator.clipboard.writeText(html.value)
+showToast("HTML Code Copied!");
+}
+
+editor.querySelector(".copy-css").onclick=()=>{
+navigator.clipboard.writeText(css.value)
+showToast("CSS Code Copied!");
+}
+
+
+// NEW: Copy All
+editor.querySelector(".copy-all").onclick = () => {
+
+const allCode = `<!-- HTML -->
+${html.value}
+
+/* CSS */
+${css.value}`;
+
+navigator.clipboard.writeText(allCode)
+
+showToast("All Code Copied!")
+
+}
+
+})
+
+/* DROPDOWN CLICK SYSTEM */
+
+document.querySelectorAll(".dropdown > a").forEach(btn=>{
+
+btn.addEventListener("click",function(e){
+
+e.preventDefault()
+
+const parent = this.parentElement
+
+parent.classList.toggle("active")
+
+})
+
+})
+
+document.addEventListener("click",function(e){
+
+document.querySelectorAll(".dropdown").forEach(drop=>{
+
+if(!drop.contains(e.target)){
+drop.classList.remove("active")
+}
+
+})
+
+})
+
+function showToast(message){
+
+const toast = document.getElementById("toast")
+
+toast.textContent = message
+toast.classList.add("show")
+
+setTimeout(()=>{
+toast.classList.remove("show")
+},2000)
+
+}
+</script>
+
+</body>
+</html>
+
+

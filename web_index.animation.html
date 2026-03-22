@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDS CodeFx | Animation Index</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+/* ===== BRAND COLORS ===== */
+:root{
+  --pink:#BF2BE2;
+  --purple:#8A2BE2;
+  --blue:#1E90FF;
+  --dark:#111;
+  --light:#ffffff;
+  --gray:#f5f7fa;
+}
+
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#ffffff;
+  color:#222;
+}
+
+/* ===== HEADER ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logo img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+nav a{
+  margin-left:2rem;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0;
+  height:2px;
+  background:white;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index:1100;
+}
+
+.hamburger span {
+  display:block;
+  width:25px;
+  height:3px;
+  margin:5px 0;
+  background:white;
+  transition:0.3s;
+}
+
+.hamburger.active span:nth-child(1){
+  transform:rotate(45deg) translate(5px,5px);
+}
+.hamburger.active span:nth-child(2){
+  opacity:0;
+}
+.hamburger.active span:nth-child(3){
+  transform:rotate(-45deg) translate(5px,-5px);
+}
+
+
+/* ===== DROPDOWN ===== */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
+position:absolute;
+top:35px;
+left:0;
+background:white;
+min-width:180px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+display:none;
+flex-direction:column;
+overflow:hidden;
+}
+
+.dropdown-menu a{
+color:#333;
+padding:10px 15px;
+text-decoration:none;
+display:block;
+font-weight:500;
+}
+
+.dropdown-menu a:hover{
+background:#f5f5f5;
+color:var(--purple);
+}
+
+/* DROPDOWN FIX */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
+position:absolute;
+top:40px;
+left:0;
+background:white;
+min-width:180px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+display:none;
+flex-direction:column;
+overflow:hidden;
+z-index:1000;
+}
+
+.dropdown-menu a{
+color:#333;
+padding:10px 15px;
+text-decoration:none;
+display:block;
+font-weight:500;
+}
+
+.dropdown-menu a:hover{
+background:#f5f5f5;
+color:var(--purple);
+}
+
+.dropdown.active .dropdown-menu{
+display:block;
+}
+
+
+
+
+/* Nav default desktop */
+nav{
+  display:flex;
+  gap:2rem;
+  align-items:center;
+}
+
+/* Mobile nav */
+@media(max-width:1080px){
+  .hamburger{display:flex;}
+  nav{
+    position:absolute;
+    top:100%;
+    right:0;
+    width:100%;
+    flex-direction:column;
+    align-items:center;
+    background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+    display:none;
+    padding:1rem 0;
+  }
+  nav.active{display:flex;}
+  nav a{
+    margin:1rem 0;
+    font-size:1.2rem;
+  }
+}
+
+
+@media(max-width:1080px){
+
+.dropdown-menu{
+position:static;
+background:transparent;
+box-shadow:none;
+display:none;
+}
+
+.dropdown.active .dropdown-menu{
+display:block;
+}
+
+.dropdown-menu a{
+color:white;
+}
+
+.dropdown-menu a:hover{
+background:rgba(255,255,255,0.15);
+color:white;
+}
+}
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  padding:5rem 2rem;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
+}
+
+.hero h1{
+  font-size:2.5rem;
+  margin-bottom:1rem;
+}
+
+.hero p{
+  font-size:1.2rem;
+  margin-bottom:2rem;
+}
+
+.hero button{
+  padding:0.8rem 2rem;
+  border:none;
+  border-radius:50px;
+  background:white;
+  color:var(--purple);
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.hero button:hover{
+  background:var(--blue);
+  color:white;
+}
+
+/* ===== SECTIONS ===== */
+
+.section-title{
+text-align:center;
+font-size:2rem;
+margin-bottom:3rem;
+color:var(--purple);
+position:relative;
+font-weight:700;
+}
+
+.section-title::after{
+content:"";
+width:80px;
+height:4px;
+background:linear-gradient(90deg,var(--pink),var(--blue));
+display:block;
+margin:12px auto 0;
+border-radius:10px;
+}
+
+.buttons-index{
+padding:4rem 2rem;
+}
+
+.index-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:2rem;
+max-width:1000px;
+margin:auto;
+}
+
+.index-card{
+background:white;
+border-radius:18px;
+padding:2rem;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.index-card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+.index-card h3{
+margin-bottom:1rem;
+color:var(--purple);
+}
+
+.index-card ul{
+list-style:none;
+margin-bottom:1rem;
+}
+
+.index-card li{
+margin:8px 0;
+}
+
+.index-card a{
+text-decoration:none;
+color:#444;
+transition:0.2s;
+}
+
+.index-card a:hover{
+color:var(--purple);
+}
+
+.explore-btn{
+display:inline-block;
+margin-top:10px;
+padding:8px 18px;
+border-radius:30px;
+background:linear-gradient(90deg,var(--pink),var(--blue));
+color:#fff !important;
+font-weight:600;
+text-decoration:none;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:2rem;
+}
+
+footer a{
+  color:var(--blue);
+  text-decoration:none;
+  margin:0 10px;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+   <a href="index.html"> <img src="TDS codefx final 3 use this logo .png (2).png" alt="Logo"></a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+ <nav id="nav-menu">
+
+<a href="index.html">Home</a>
+<a href="index.html#tools">Tools</a>
+
+<a href="index.html#contact">Contact</a>
+
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Button Animation Library</h1>
+  <p>  Explore premium and modern button animations for your projects.
+    Hover effects, gradient buttons, glowing styles and more.</p>
+  <button onclick="document.querySelector('.buttons-index').scrollIntoView({behavior:'smooth'})">
+Explore
+</button>
+</section>
+
+<!-- CONTENT SECTION -->
+<section class="buttons-index">
+
+<h2 class="section-title">Button Animation Catagory</h2>
+
+<div class="index-container">
+
+<!-- CSS BUTTONS -->
+
+<div class="index-card">
+
+<h3>🎨 CSS Button Effects</h3>
+
+<ul>
+
+<li><a href="gradient_btn.html">Gradient Buttons</a></li>
+<li><a href="outline_btn.html">Outline Buttons</a></li>
+<li><a href="ripple_button.html">Ripple Buttons</a></li>
+<li><a href="css_slide_btn.html">Slide Buttons</a></li>
+
+</ul>
+
+<!--
+<a href="css-buttons.html" class="explore-btn">Explore All CSS Button</a>
+-->
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 TDS CodeFx |
+  <a href="privacy.html">Privacy Policy</a> |
+  <a href="terms_and_condition.html">Terms & Conditions</a> |
+  <a href="index.html">Home</a> 
+  
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  hamburger.classList.toggle('active');
+});
+
+
+/* DROPDOWN CLICK SYSTEM */
+
+document.querySelectorAll(".dropdown > a").forEach(btn=>{
+
+btn.addEventListener("click",function(e){
+
+e.preventDefault()
+
+const parent = this.parentElement
+
+parent.classList.toggle("active")
+
+})
+
+})
+
+document.addEventListener("click",function(e){
+
+document.querySelectorAll(".dropdown").forEach(drop=>{
+
+if(!drop.contains(e.target)){
+drop.classList.remove("active")
+}
+
+})
+
+})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDS CodeFx | Word Counter</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+/* ===== BRAND COLORS ===== */
+:root{
+  --pink:#BF2BE2;
+  --purple:#8A2BE2;
+  --blue:#1E90FF;
+  --dark:#111;
+  --light:#ffffff;
+  --gray:#f5f7fa;
+}
+
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#ffffff;
+  color:#222;
+}
+
+/* ===== HEADER ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logo img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+nav a{
+  margin-left:2rem;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0;
+  height:2px;
+  background:white;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index:1100;
+}
+
+.hamburger span {
+  display:block;
+  width:25px;
+  height:3px;
+  margin:5px 0;
+  background:white;
+  transition:0.3s;
+}
+
+.hamburger.active span:nth-child(1){
+  transform:rotate(45deg) translate(5px,5px);
+}
+.hamburger.active span:nth-child(2){
+  opacity:0;
+}
+.hamburger.active span:nth-child(3){
+  transform:rotate(-45deg) translate(5px,-5px);
+}
+
+/* ===== DROPDOWN ===== */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
+position:absolute;
+top:35px;
+left:0;
+background:white;
+min-width:180px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+display:none;
+flex-direction:column;
+overflow:hidden;
+}
+
+.dropdown-menu a{
+color:#333;
+padding:10px 15px;
+text-decoration:none;
+display:block;
+font-weight:500;
+}
+
+.dropdown-menu a:hover{
+background:#f5f5f5;
+color:var(--purple);
+}
+
+/* DROPDOWN FIX */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
+position:absolute;
+top:40px;
+left:0;
+background:white;
+min-width:180px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+display:none;
+flex-direction:column;
+overflow:hidden;
+z-index:1000;
+}
+
+.dropdown-menu a{
+color:#333;
+padding:10px 15px;
+text-decoration:none;
+display:block;
+font-weight:500;
+}
+
+.dropdown-menu a:hover{
+background:#f5f5f5;
+color:var(--purple);
+}
+
+.dropdown.active .dropdown-menu{
+display:block;
+}
+
+
+
+
+/* Nav default desktop */
+nav{
+  display:flex;
+  gap:2rem;
+  align-items:center;
+}
+
+/* Mobile nav */
+@media(max-width:1080px){
+  .hamburger{display:flex;}
+  nav{
+    position:absolute;
+    top:100%;
+    right:0;
+    width:100%;
+    flex-direction:column;
+    align-items:center;
+    background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+    display:none;
+    padding:1rem 0;
+  }
+  nav.active{display:flex;}
+  nav a{
+    margin:1rem 0;
+    font-size:1.2rem;
+  }
+}
+
+
+@media(max-width:1080px){
+
+.dropdown-menu{
+position:static;
+background:transparent;
+box-shadow:none;
+display:none;
+}
+
+.dropdown.active .dropdown-menu{
+display:block;
+}
+
+.dropdown-menu a{
+color:white;
+}
+
+.dropdown-menu a:hover{
+background:rgba(255,255,255,0.15);
+color:white;
+}
+}
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  padding:5rem 2rem;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
+}
+
+.hero h1{
+  font-size:2.5rem;
+  margin-bottom:1rem;
+}
+
+.hero p{
+  font-size:1.2rem;
+  margin-bottom:2rem;
+}
+
+.hero button{
+  padding:0.8rem 2rem;
+  border:none;
+  border-radius:50px;
+  background:white;
+  color:var(--purple);
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.hero button:hover{
+  background:var(--blue);
+  color:white;
+}
+
+/* ===== SECTIONS ===== */
+section{
+  padding:4rem 2rem;
+}
+
+section h2{
+  text-align:center;
+  font-size:2rem;
+  margin-bottom:2rem;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+
+/* ===== CARDS ===== */
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:2rem;
+  text-align:center;
+  transition:0.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.07);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.card h3{
+  margin-bottom:1rem;
+  color:var(--purple);
+}
+
+.card p{
+  color:#555;
+  font-size:0.95rem;
+}
+
+.card button{
+  margin-top:1rem;
+  padding:0.6rem 1.5rem;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card button:hover{
+  transform:scale(1.05);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:2rem;
+}
+
+footer a{
+  color:var(--blue);
+  text-decoration:none;
+  margin:0 10px;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+  <a href="index.html"> <img src="TDS codefx final 3 use this logo .png (2).png" alt="Logo"></a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+ <nav id="nav-menu">
+
+
+<a href="index.html">Home</a>
+<a href="index.html#tools">Tools</a>
+
+<a href="web_index.animation.html">Animations</a>
+
+<a href="index.html#contact">Contact</a>
+
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Word Counter Tool</h1>
+  <p>A Word Counter is a fast and easy tool that calculates words, characters, sentences, and reading time in your text.</p>
+ <button onclick="document.querySelector('#content').scrollIntoView({behavior:'smooth'})">
+Explore
+</button>
+</section>
+
+<!-- CONTENT SECTION -->
+<!-- CONTENT SECTION -->
+<section id="content">
+  <h2>Word Counter Tool</h2>
+
+  <div style="max-width:900px;margin:auto;" class="card">
+
+    <textarea id="textInput" placeholder="Paste or type your text here..."
+    style="width:100%;height:200px;padding:15px;border-radius:10px;border:1px solid #ddd;font-size:16px;resize:vertical;"></textarea>
+
+    <div class="grid" style="margin-top:20px;">
+      <div class="card">Words<br><b id="wordCount">0</b></div>
+      <div class="card">Characters<br><b id="charCount">0</b></div>
+      <div class="card">No Space<br><b id="charNoSpace">0</b></div>
+      <div class="card">Sentences<br><b id="sentenceCount">0</b></div>
+      <div class="card">Paragraphs<br><b id="paragraphCount">0</b></div>
+      <div class="card">Reading Time<br><b id="readingTime">0 min</b></div>
+    </div>
+
+    <div id="output" style="margin-top:20px;font-family:monospace;color:#555;">
+      Text preview will appear here...
+    </div>
+
+    <div style="margin-top:20px;text-align:center;">
+      <button onclick="clearText()">Clear</button>
+      <button onclick="copyOutput()">Copy</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 TDS CodeFx |
+  <a href="privacy.html">Privacy Policy</a> |
+  <a href="terms_and_condition.html">Terms & Conditions</a> |
+  <a href="index.html">Home</a>
+  
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  hamburger.classList.toggle('active');
+});
+
+
+
+const textarea = document.getElementById("textInput");
+const wordCount = document.getElementById("wordCount");
+const charCount = document.getElementById("charCount");
+const charNoSpace = document.getElementById("charNoSpace");
+const sentenceCount = document.getElementById("sentenceCount");
+const paragraphCount = document.getElementById("paragraphCount");
+const readingTime = document.getElementById("readingTime");
+const output = document.getElementById("output");
+
+textarea.addEventListener("input", updateCounts);
+
+function updateCounts() {
+    const text = textarea.value.trim();
+
+    const words = text === "" ? [] : text.split(/\s+/);
+    wordCount.textContent = words.length;
+
+    charCount.textContent = text.length;
+
+    charNoSpace.textContent = text.replace(/\s/g, "").length;
+
+    const sentences = text.split(/[.!?]+/).filter(Boolean);
+    sentenceCount.textContent = sentences.length;
+
+    const paragraphs = text.split(/\n{2,}/).filter(Boolean);
+    paragraphCount.textContent = paragraphs.length;
+
+    const time = Math.ceil(words.length / 200);
+    readingTime.textContent = `${time} min`;
+
+    output.textContent = text || "Text preview will appear here...";
+}
+
+function clearText() {
+    textarea.value = "";
+    updateCounts();
+}
+
+function copyOutput() {
+    const text = output.textContent;
+    navigator.clipboard.writeText(text);
+    alert("Copied!");
+}
+
+
+/* DROPDOWN CLICK SYSTEM */
+
+document.querySelectorAll(".dropdown > a").forEach(btn=>{
+
+btn.addEventListener("click",function(e){
+
+e.preventDefault()
+
+const parent = this.parentElement
+
+parent.classList.toggle("active")
+
+})
+
+})
+
+document.addEventListener("click",function(e){
+
+document.querySelectorAll(".dropdown").forEach(drop=>{
+
+if(!drop.contains(e.target)){
+drop.classList.remove("active")
+}
+
+})
+
+})
+</script>
+
+</body>
+</html>
