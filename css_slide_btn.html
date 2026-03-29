@@ -7,7 +7,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
+
+    body {
+  overflow: auto;
+}
+  
 /* ===== BRAND COLORS ===== */
+  
 :root{
   --pink:#BF2BE2;
   --purple:#8A2BE2;
@@ -490,7 +496,7 @@ Explore
 
 <!-- CONTENT SECTION -->
 
-<section class="code-editor" data-title="Slide Fill Left Button Effect">
+<section id="slide-left" class="code-editor" data-title="Slide Fill Left Button Effect">
 <code type="html">
 &lt;button class="slide-fill-left"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -544,8 +550,8 @@ transform:scale(1.05);
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Slide Fill Right Button Effect">
+  
+<section id="slide-right" class="code-editor" data-title="Slide Fill Right Button Effect">
 <code type="html">
 &lt;button class="slide-fill-right"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -599,8 +605,8 @@ transform:scale(1.05);
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Slide Fill Top Button Effect">
+  
+<section id="slide-top" class="code-editor" data-title="Slide Fill Top Button Effect">
 <code type="html">
 &lt;button class="slide-fill-top"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -654,8 +660,8 @@ transform:scale(1.05);
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Slide Fill Bottom Button Effect">
+  
+<section id="slide-bottom" class="code-editor" data-title="Slide Fill Bottom Button Effect">
 <code type="html">
 &lt;button class="slide-fill-bottom"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -709,8 +715,8 @@ transform:scale(1.05);
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Diagonal Center Expand Gradient Fill Button Effect">
+  
+<section id="center-fill" class="code-editor" data-title="Diagonal Center Expand Gradient Fill Button Effect">
 <code type="html">
 &lt;button class="center-gradient-fill"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -768,8 +774,8 @@ transform:scale(1.05);
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Slide Border Reveal Button Effect">
+  
+<section id="border-reveal" class="code-editor" data-title="Slide Border Reveal Button Effect">
 <code type="html">
 &lt;button class="slide-border-reveal"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -854,7 +860,7 @@ background:linear-gradient(90deg,#ff0080,#7928ca,#007bff); /* Optional fill */
 </code>
 </section>
 
-<section class="code-editor" data-title="Slide Text Swap Button Effect Improved">
+<section id="text-swap" class="code-editor" data-title="Slide Text Swap Button Effect Improved">
 <code type="html">
 &lt;button class="slide-text-swap-improved"&gt;
   &lt;span class="text"&gt;Get Started&lt;/span&gt;
@@ -930,7 +936,7 @@ pointer-events:none;
 </code>
 </section>
 
-<section class="code-editor" data-title="Slide Background Sweep Button Effect">
+<section id="bg-sweep" class="code-editor" data-title="Slide Background Sweep Button Effect">
 <code type="html">
 &lt;button class="slide-bg-sweep"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -987,7 +993,7 @@ transform:scale(1.05); /* Slight zoom */
 </code>
 </section>
 
-<section class="code-editor" data-title="Slide Double Fill Button Effect">
+<section id="double-fill" class="code-editor" data-title="Slide Double Fill Button Effect">
 <code type="html">
 &lt;button class="slide-double-fill"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -1059,7 +1065,7 @@ transform:scale(1.05);
 </code>
 </section>
 
-<section class="code-editor" data-title="Slide Curtain Open Button">
+<section id="curtain" class="code-editor" data-title="Slide Curtain Open Button">
 <code type="html">
 &lt;button class="slide-curtain"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -1111,7 +1117,7 @@ transform:translateX(100%);
 </code>
 </section>
 
-<section class="code-editor" data-title="Slide Glow Button Effect">
+<section id="glow-slide" class="code-editor" data-title="Slide Glow Button Effect">
 <code type="html">
 &lt;button class="slide-glow-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -1169,7 +1175,7 @@ transform:scale(1.05);
 </code>
 </section>
 
-<section class="code-editor" data-title="Slide Split Color Swap Button">
+<section id="split-swap" class="code-editor" data-title="Slide Split Color Swap Button">
 <code type="html">
 &lt;button class="slide-split-swap"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -1239,8 +1245,23 @@ transform:scale(1.05);
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Unique Morph Glow Button with White Text Hover"> <code type="html"> &lt;button class="morph-glow-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .morph-glow-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; /* Initial text color */ background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
+<section id="morph-glow" class="code-editor" data-title="Unique Morph Glow Button with White Text Hover">
+  
+  <code type="html"> &lt;button class="morph-glow-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> 
+  <code type="css">
+    .morph-glow-button {
+    position: relative;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff; /* Initial text color */ 
+    background: transparent;
+    border: 2px solid #007bff;
+    border-radius: 50px;
+    cursor: pointer; 
+    overflow: hidden;
+    transition: all 0.3s ease;
+    }
 
 /* Inner gradient slide */
 .morph-glow-button::before {
@@ -1288,7 +1309,7 @@ transition: all 0.1s ease;
 
 </section>
 
-<section class="code-editor" data-title="Diagonal Split Slide Button Effect">
+<section id="diagonal-split" class="code-editor" data-title="Diagonal Split Slide Button Effect">
 <code type="html">
 &lt;button class="slide-diagonal-split"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
