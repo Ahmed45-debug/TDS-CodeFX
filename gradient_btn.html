@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TDS CodeFx | CSS Gradient Button Animation</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
+    body {
+  overflow: auto;
+}
+  
 /* ===== BRAND COLORS ===== */
 :root{
   --pink:#BF2BE2;
@@ -488,7 +492,7 @@ Explore
 
 <!-- CONTENT SECTION -->
 
-<section class="code-editor" data-title="Linear Gradient Hover Button Effect">
+<section id="linear" class="code-editor" data-title="Linear Gradient Hover Button Effect">
 <code type="html">
 &lt;button class="gradient-button"&gt;Get Started&lt;/button&gt;
 </code>
@@ -527,7 +531,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.25);
 </code>
 </section>
 
-<section class="code-editor" data-title="Gradient Shine Sweep Button Effect">
+<section id="shine" class="code-editor" data-title="Gradient Shine Sweep Button Effect">
 <code type="html">
 &lt;button class="gradient-shine"&gt;Get Started&lt;/button&gt;
 </code>
@@ -583,8 +587,8 @@ box-shadow:0 10px 25px rgba(0,0,0,0.25);
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Diagonal Gradient Border Glow Button Effect">
+  
+<section id="diagonal-glow" class="code-editor" data-title="Diagonal Gradient Border Glow Button Effect">
 <code type="html">
 &lt;button class="gradient-border-glow-diagonal"&gt;Get Started&lt;/button&gt;
 </code>
@@ -651,7 +655,7 @@ transform:scale(1.05);
 </code>
 </section>
 
-<section class="code-editor" data-title="Gradient Border Glow Button Effect">
+<section id="border-glow" class="code-editor" data-title="Gradient Border Glow Button Effect">
 <code type="html">
 &lt;button class="gradient-border-glow"&gt;Get Started&lt;/button&gt;
 </code>
@@ -718,7 +722,8 @@ transform:scale(1.05);
 </code>
 </section>
 
-<section class="code-editor" data-title="Animated Gradient Border Glow Button Effect">
+  
+<section id="animated-border" class="code-editor" data-title="Animated Gradient Border Glow Button Effect">
 <code type="html">
 &lt;button class="animated-gradient-border"&gt;Get Started&lt;/button&gt;
 </code>
@@ -779,8 +784,7 @@ transform:scale(1.05);
 </code>
 </section>
 
-
-<section class="code-editor" data-title="Gradient Border Glow with Inner Pulse">
+<section id="border-pulse" class="code-editor" data-title="Gradient Border Glow with Inner Pulse">
 <code type="html">
 &lt;button class="gradient-border-pulse"&gt;Get Started&lt;/button&gt;
 </code>
@@ -853,7 +857,8 @@ opacity:0.8;
 </code>
 </section>
 
-<section class="code-editor" data-title="Animated Gradient Background Button Effect">
+  
+<section id="animated-bg" class="code-editor" data-title="Animated Gradient Background Button Effect">
 <code type="html">
 &lt;button class="animated-gradient-bg"&gt;Get Started&lt;/button&gt;
 </code>
@@ -893,7 +898,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.3);
 </code>
 </section>
 
-<section class="code-editor" data-title="Gradient Border Fill Button Effect">
+<section id="border-fill" class="code-editor" data-title="Gradient Border Fill Button Effect">
 <code type="html">
 &lt;button class="gradient-border-fill"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -957,8 +962,8 @@ transform:scale(1.05);
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Gradient Rotate Background Button Effect">
+  
+<section id="rotate-bg" class="code-editor" data-title="Gradient Rotate Background Button Effect">
 <code type="html">
 &lt;button class="gradient-rotate-bg"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -1013,8 +1018,8 @@ background-size:200% 200%;
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Gradient Wave Hover Button Effect">
+  
+<section id="wave" class="code-editor" data-title="Gradient Wave Hover Button Effect">
 <code type="html">
 &lt;button class="gradient-wave-hover"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -1066,8 +1071,8 @@ background-position:0% 50%;
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Gradient Glow Hover Button Effect">
+  
+<section id="glow-hover" class="code-editor" data-title="Gradient Glow Hover Button Effect">
 <code type="html">
 &lt;button class="gradient-glow-hover"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -1123,8 +1128,8 @@ box-shadow:0 10px 25px rgba(0,0,0,0.3);
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Gradient Ripple Button Effect">
+  
+<section id="gradient-ripple" class="code-editor" data-title="Gradient Ripple Button Effect">
 <code type="html">
 &lt;button class="gradient-ripple"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
@@ -1183,8 +1188,8 @@ box-shadow:0 10px 25px rgba(0,0,0,0.2);
 <code type="js">
 </code>
 </section>
-
-<section class="code-editor" data-title="Gradient Border Animation Button Effect">
+  
+<section id="border-anim" class="code-editor" data-title="Gradient Border Animation Button Effect">
 <code type="html">
 &lt;button class="gradient-border-anim"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt;
 </code>
