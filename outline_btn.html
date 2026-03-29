@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
+
+    body {
+  overflow: auto;
+}
+  
 /* ===== BRAND COLORS ===== */
 :root{
   --pink:#BF2BE2;
@@ -488,8 +493,7 @@ Explore
 
 <!-- CONTENT SECTION -->
 
-<section class="code-editor" data-title="Border Draw Left Button Effect">
-
+<section id="border-left" class="code-editor" data-title="Border Draw Left Button Effect">
 <code type="html">
 &lt;button class="border-draw-left"&gt;
 &lt;span&gt;Explore&lt;/span&gt;
@@ -581,7 +585,7 @@ transition-delay:0.6s;
 
 </section>
 
-<section class="code-editor" data-title="Border Draw Right Button Effect">
+<section id="border-right" class="code-editor" data-title="Border Draw Right Button Effect">
 
 <code type="html">
 &lt;button class="border-draw-right"&gt;Explore&lt;/button&gt;
@@ -672,7 +676,8 @@ transition-delay:0.6s;
 
 </section>
 
-<section class="code-editor" data-title="Border Expand Hover Button Effect"> <code type="html"> &lt;button class="border-expand-button"&gt;Get Started&lt;/button&gt; </code> <code type="css"> .border-expand-button { position: relative; padding: 15px 35px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
+<section id="border-expand" class="code-editor" data-title="Border Expand Hover Button Effect">
+  <code type="html"> &lt;button class="border-expand-button"&gt;Get Started&lt;/button&gt; </code> <code type="css"> .border-expand-button { position: relative; padding: 15px 35px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
 
 /* Pseudo-element for border expansion */
 .border-expand-button::before {
@@ -703,7 +708,8 @@ color: #007bff;
 
 </section>
 
-<section class="code-editor" data-title="Outline Pulse Button Effect"> <code type="html"> &lt;button class="outline-pulse-button"&gt;Get Started&lt;/button&gt; </code> <code type="css"> .outline-pulse-button { position: relative; padding: 15px 35px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; outline: none; transition: all 0.3s ease; /* Pulse animation */ animation: pulse-border 2s infinite; }
+<section id="outline-pulse" class="code-editor" data-title="Outline Pulse Button Effect">
+  <code type="html"> &lt;button class="outline-pulse-button"&gt;Get Started&lt;/button&gt; </code> <code type="css"> .outline-pulse-button { position: relative; padding: 15px 35px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; outline: none; transition: all 0.3s ease; /* Pulse animation */ animation: pulse-border 2s infinite; }
 
 /* Hover optional: scale slightly */
 .outline-pulse-button:hover {
@@ -726,7 +732,8 @@ box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
 
 </section>
 
-<section class="code-editor" data-title="Border Glow Click Pulse Button Effect"> <code type="html"> &lt;button class="glow-pulse-button"&gt;Get Started&lt;/button&gt; </code> <code type="css"> .glow-pulse-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
+<section id="glow-pulse" class="code-editor" data-title="Border Glow Click Pulse Button Effect">
+  <code type="html"> &lt;button class="glow-pulse-button"&gt;Get Started&lt;/button&gt; </code> <code type="css"> .glow-pulse-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
 
 /* Hover: glowing border */
 .glow-pulse-button:hover {
@@ -764,7 +771,8 @@ transform: scale(1.1);
 </section>
 
 
-<section class="code-editor" data-title="Double Border Outline Button Effect"> <code type="html"> &lt;button class="double-border-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .double-border-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; /* Inner border */ border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
+<section id="double-border" class="code-editor" data-title="Double Border Outline Button Effect">
+  <code type="html"> &lt;button class="double-border-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .double-border-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px solid #007bff; /* Inner border */ border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
 
 /* Outer border using pseudo-element /
 .double-border-button::before {
@@ -810,7 +818,8 @@ box-shadow: 0 0 25px 8px rgba(0,123,255,0.2);
 
 </section>
 
-<section class="code-editor" data-title="Outline Dash Animation Button Effect"> <code type="html"> &lt;button class="dash-animate-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .dash-animate-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px dashed #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
+<section id="dash-animate" class="code-editor" data-title="Outline Dash Animation Button Effect">
+  <code type="html"> &lt;button class="dash-animate-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .dash-animate-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px dashed #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; }
 
 /* Dash animation using border-image trick */
 .dash-animate-button::before {
@@ -863,7 +872,8 @@ box-shadow: 0 0 10px rgba(0,123,255,0.2);
 
 </section>
 
-<section class="code-editor" data-title="Fixed Animated Dashed Outline Button"> <code type="html"> &lt;button class="animated-dash-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .animated-dash-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px dashed #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; z-index: 0; }
+<section id="animated-dash" class="code-editor" data-title="Fixed Animated Dashed Outline Button">
+  <code type="html"> &lt;button class="animated-dash-button"&gt;&lt;span&gt;Get Started&lt;/span&gt;&lt;/button&gt; </code> <code type="css"> .animated-dash-button { position: relative; padding: 15px 40px; font-size: 18px; font-weight: bold; color: #007bff; background: transparent; border: 2px dashed #007bff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: all 0.3s ease; z-index: 0; }
 
 /* Animate dashed border using pseudo-element /
 .animated-dash-button::after {
@@ -917,7 +927,7 @@ box-shadow: 0 0 25px rgba(0,123,255,0.4);
 
 </section>
 
-<section class="code-editor" data-title="Outline Underline Expand Button Effect">
+<section id="underline-expand" class="code-editor" data-title="Outline Underline Expand Button Effect">
 
 <code type="html">
 &lt;button class="outline-underline-expand"&gt;Explore&lt;/button&gt;
@@ -968,7 +978,7 @@ width:100%;
 
 </section>
 
-<section class="code-editor" data-title="Outline Border Rotate Button Effect">
+<section id="border-rotate" class="code-editor" data-title="Outline Border Rotate Button Effect">
 
 <code type="html">
 &lt;button class="outline-border-rotate"&gt;
@@ -1031,7 +1041,7 @@ transform:rotate(360deg);
 
 </section>
 
-<section class="code-editor" data-title="Outline Ripple Button Effect">
+<section id="outline-ripple" class="code-editor" data-title="Outline Ripple Button Effect">
 
 <code type="html">
 &lt;button class="outline-ripple"&gt;
@@ -1084,7 +1094,7 @@ height:300%;
 
 </section>
 
-<section class="code-editor" data-title="Outline Dash Animation Button Effect">
+<section id="outline-dash-2" class="code-editor" data-title="Outline Dash Animation Button Effect">
 
 <code type="html">
 &lt;button class="outline-dash"&gt;
