@@ -462,6 +462,19 @@ footer a:hover{
   text-decoration:underline;
 }
 
+  ‎/* Footer Social Media Icons */
+‎.footer-social a{
+‎  color:white;
+‎  font-size:1.2rem;
+‎  transition:0.3s;
+‎}
+‎
+‎.footer-social a:hover{
+‎  color:var(--pink);
+‎  transform:scale(1.2);
+‎}
+‎
+‎
 </style>
 </head>
 
@@ -484,7 +497,8 @@ footer a:hover{
 <a href="web_index.animation.html">Animations</a>
 
 <a href="index.html#contact">Contact</a>
-
+  <a href="about_the_Founder.html">About the Founder</a>
+   
 </nav>
 </header>
 
@@ -1215,15 +1229,32 @@ opacity: 0;
 
  </section>
 
-<!-- FOOTER -->
-<footer>
-  © 2026 TDS CodeFx |
-  <a href="privacy.html">Privacy Policy</a> |
-  <a href="terms_and_condition.html">Terms & Conditions</a> |
-  <a href="index.html">Home</a> 
+‎<!-- FOOTER -->
+‎<footer>
+‎  <div class="footer-content" style="display:flex; flex-direction:column; align-items:center; gap:1rem;">
+‎    <div class="footer-text">
+‎      © 2026 TDS CodeFx |
+‎      <a href="privacy.html">Privacy Policy</a> |
+‎      <a href="terms_and_condition.html">Terms & Conditions</a> |
+‎      <a href="about_the_Founder.html">About the Founder</a>  
+‎      
+‎    </div>
+‎    
+‎   <!-- Social Media Links -->
+‎     
+‎    <div class="footer-social" style="display:flex; gap:1rem;">
+‎    <!--   <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+‎       <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>  -->
+‎        <a href="https://www.youtube.com/@CodeFX-TDS" target="_blank"><i class="fab fa-youtube"></i></a>  
+‎              <a href="https://www.instagram.com/codefxtds?igsh=ZDRpZDZsNDl4anQy" target="_blank"><i class="fab fa-instagram"></i></a>
+‎               <a href="https://www.tiktok.com/@codefxtds?_r=1&_t=ZS-95nupoOVOqI" target="_blank"><i class="fab fa-tiktok"></i></a>
+‎                
+‎   <!--   <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a> --> 
+‎
+‎    </div> 
+‎  </div>
+‎</footer>
   
-</footer>
-
 <script>
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
