@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About the Founder | TDS CodeFx</title>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2H2NT4PQJ0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2H2NT4PQJ0');
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+
+/* ===== BRAND COLORS ===== */
+:root{
+  --pink:#BF2BE2;
+  --purple:#8A2BE2;
+  --blue:#1E90FF;
+  --dark:#111;
+  --light:#ffffff;
+  --gray:#f5f7fa;
+}
+
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#ffffff;   /* WHITE BACKGROUND */
+  color:#222;
+}
+
+/* ===== HEADER ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logo img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+nav a{
+  margin-left:2rem;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0;
+  height:2px;
+  background:white;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  padding:6rem 2rem;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
+}
+
+.hero h1{
+  font-size:3rem;
+  margin-bottom:1rem;
+  animation:fadeIn 1.5s ease;
+}
+
+.hero p{
+  font-size:1.2rem;
+  margin-bottom:2rem;
+}
+
+.hero button{
+  padding:0.9rem 2.2rem;
+  border:none;
+  border-radius:50px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  background:white;
+  color:var(--purple);
+  transition:0.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.hero button:hover{
+  transform:translateY(-4px);
+  background:var(--blue);
+  color:white;
+}
+
+/* ===== SECTIONS ===== */
+section{
+  padding:5rem 2rem;
+}
+
+section h2{
+  text-align:center;
+  font-size:2.3rem;
+  margin-bottom:3rem;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.tool-img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:1rem;
+}
+
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+
+/* ===== CARDS ===== */
+.card{
+  background:#ffffff;
+  border-radius:18px;
+  padding:2rem;
+  text-align:center;
+  transition:0.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.07);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.card h3{
+  margin-bottom:1rem;
+  color:var(--purple);
+}
+
+.card p{
+  font-size:0.95rem;
+  color:#555;
+}
+
+.card button{
+  margin-top:1.2rem;
+  padding:0.6rem 1.5rem;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  color:white;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.card button:hover{
+  transform:scale(1.08);
+  opacity:0.9;
+}
+
+  .dev_tool_button {
+
+  margin:auto; 
+  padding:0.6rem 1.5rem;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  color:white;
+  font-weight:600;
+  transition:0.3s;
+}
+  
+
+/* ===== GOOGLE FORM ===== */
+.google-form iframe{
+  width:100%;
+  height:600px;
+  border:none;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:2rem;
+}
+
+footer a{
+  color:var(--blue);
+  text-decoration:none;
+  margin:0 10px;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+/* Footer Social Media Icons */
+.footer-social a{
+  color:white;
+  font-size:1.2rem;
+  transition:0.3s;
+}
+
+.footer-social a:hover{
+  color:var(--pink);
+  transform:scale(1.2);
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero h1{font-size:2rem;}
+  nav a{margin-left:1rem;}
+}
+
+
+/* Hamburger initially hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1100; /* higher than nav */
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+  background: white;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Nav default desktop */
+nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Mobile styles */
+@media(max-width:1080px) {
+  .hamburger {
+    display: flex; /* show hamburger on mobile */
+  }
+
+  nav {
+    position: absolute;
+    top: 100%; /* just below header */
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
+    display: none; /* hidden by default */
+    padding: 1rem 0;
+  }
+
+  nav.active {
+    display: flex; /* show menu on click */
+  }
+/* ===== BRAND COLORS ===== */
+  nav a {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  header {
+    position: relative; /* required for nav absolute positioning */
+  }
+
+  .hero button {
+    margin-top: 10px;
+  }
+}
+
+ a {
+  color: white;
+  text-decoration: none;
+ }
+ 
+ 
+ /* ===== FOUNDER SECTION ===== */
+.founder-container{
+  display:flex;
+  flex-direction:column; /* 👈 force vertical layout */
+  align-items:center;
+  gap:2rem;
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+}
+
+.founder-img-box img{
+  width:220px;
+  border-radius:20px;
+  border:3px solid #8A2BE2;
+  box-shadow:0 0 25px rgba(138,43,226,0.5);
+}
+
+.founder-text p{
+  margin-bottom:1rem;
+  color:#555;
+  line-height:1.7;
+}
+
+.founder-text h3{
+  margin-top:1.5rem;
+  color:var(--purple);
+}
+
+.founder-text ul{
+  margin-left:20px;
+  margin-bottom:1rem;
+  color:#444;
+}
+
+.founder-text a{
+  color:var(--blue);
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.founder-text a:hover{
+  text-decoration:underline;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .founder-container{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img src="TDS codefx final 3 use this logo .png (2).png" alt="Logo">
+  </div>
+
+  <!-- Hamburger icon -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Nav menu -->
+  <nav id="nav-menu">
+ 
+  <a href="index.html">Home</a>
+<a href="index.html#tools">Tools</a>
+
+<a href="web_index.animation.html">Animations</a>
+
+<a href="index.html#contact">Contact</a>
+
+     
+    
+  </nav>
+</header>
+
+<!-- ABOUT THE FOUNDER -->
+<section id="founder">
+
+  <h2>About the Founder</h2>
+
+  <div class="founder-container">
+
+    <!-- IMAGE -->
+    <div class="founder-img-box">
+      <img src="Picsart.jpg" alt="Muhammad Ahmed">
+    </div>
+
+    <!-- CONTENT -->
+    <div class="founder-text">
+
+      <p>
+        
+       👋Hello! I'm <b>Muhammad Ahmed</b>, a passionate frontend developer and the creator of <b> TDS CodeFx</b>.
+      </p>
+
+      <p>
+        
+        My journey into web development began in <b>2023</b>, right after completing my 10th grade. During a 5–6 month break, I decided to invest my time in learning a valuable skill instead of wasting it.
+      </p>
+ <p>
+     Initially, I explored photo editing on mobile, but soon realized that most professional work required a computer. That’s when I discovered web development through YouTube — and everything changed.
+ </p>
+ 
+      <p>
+      At the beginning, coding felt confusing and overwhelming. I struggled to understand even the basics and almost gave up after watching a few tutorials. But then I made a strong decision:
+    <br><b>“No matter what happens, I will learn this skill.”</b>
+      </p>
+
+      <p>
+     Since I didn’t have access to a computer, I started learning and practicing entirely on my <b>Android mobile</b> using coding apps like <b>TrebEdit</b>.
+      </p>
+
+      <p>
+        Step by step, I learned HTML and CSS, and started building UI designs.
+      </p>
+
+      <h3>First Real Project (2025)</h3>
+
+      <p>
+        After a break in <b>2024</b> due to studies, I restarted my journey in <b>2025</b> and built my first portfolio:
+      </p>
+
+      <p>
+        <a href="https://ahmed45-debug.github.io/Portfolio-/" target="_blank">
+          View My First Portfolio Project 
+        </a> 
+       <a href="https://ahmed45-debug.github.io/Portfolio-/" target="_blank">
+         ( Click here )
+        </a> 
+      </p>
+     
+
+      <ul>
+        <li>Built completely on mobile</li>
+        <li>Mobile-optimized (not fully responsive)</li>
+        <li>No PC experience at that time</li>
+      </ul>
+
+    <p>
+  At that time, I did not have access to a PC, which limited my experience with responsive design. Because of this, I built the portfolio specifically for mobile devices only.
+</p>
+
+<p>
+  Even today, I have chosen not to modify this project, as it represents my <b>starting point</b> and early learning phase. It remains a mobile-optimized project as a reflection of where I began.
+</p>
+
+
+      <h3>Growth & Progress</h3>
+
+      <p>
+        I improved my skills by learning JavaScript, creating tools, and experimenting with UI animations.
+      </p>
+
+      <h3>🚀 Milestone</h3>
+
+      <p>
+        
+        
+       In <b>2026</b>, after nearly <b>1.5 years of consistency,</b> I successfully launched my first brand: <br>
+<b>👉 TDS CodeFx </b> <br> 
+A platform designed to help developers with:<br>
+<ul>
+    <li>UI animation</li>
+    <li>Creative components</li>
+    <li>Devlopers tools</li>
+</ul>
+      </p>
+
+      <h3>🌍 Vision</h3>
+
+      <p>
+       My goal is to build TDS CodeFx into a global platform that helps developers create better, faster, and more creative user interfaces.
+      </p>
+
+      <h3>💡 Message to Beginners</h3>
+
+      <p>
+      You don’t need perfect resources to start.<br>
+       If you don’t have a laptop or high-end setup, you can still learn and build using your mobile.  <br>
+     <b>  Start where you are. Use what you have. Stay consistent<br>
+       </p>
+
+      <!-- CONTACT -->
+      <h3>Contact</h3>
+
+      <p>
+        For personal inquiries or collaboration, feel free to message me on Threads:
+      </p>
+
+      <p>
+        <a href="https://www.threads.com/@ahmedpakistani2026" target="_blank">
+          Contact me on Threads
+        </a>
+        <a href="https://www.threads.com/@ahmedpakistani2026" target="_blank">
+         ( Click here )
+        </a>
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content" style="display:flex; flex-direction:column; align-items:center; gap:1rem;">
+    <div class="footer-text">
+      © 2026 TDS CodeFx |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms_and_condition.html">Terms & Conditions</a> |
+      <a href="#">About the Founder</a>  
+      
+    </div>
+    
+   <!-- Social Media Links -->
+     
+    <div class="footer-social" style="display:flex; gap:1rem;">
+    <!--   <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+       <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>  -->
+        <a href="https://www.youtube.com/@CodeFX-TDS" target="_blank"><i class="fab fa-youtube"></i></a>  
+              <a href="https://www.instagram.com/codefxtds?igsh=ZDRpZDZsNDl4anQy" target="_blank"><i class="fab fa-instagram"></i></a>
+               <a href="https://www.tiktok.com/@codefxtds?_r=1&_t=ZS-95nupoOVOqI" target="_blank"><i class="fab fa-tiktok"></i></a>
+                
+   <!--   <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a> --> 
+
+    </div> 
+  </div>
+</footer>
+
+</body>
+<script>
+ const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active'); // show/hide nav
+  hamburger.classList.toggle('active'); // animate hamburger
+});
+/* ===== BRAND COLORS ===== */
+
+/* DROPDOWN CLICK SYSTEM */
+
+document.querySelectorAll(".dropdown > a").forEach(btn=>{
+
+btn.addEventListener("click",function(e){
+
+e.preventDefault()
+
+const parent = this.parentElement
+
+parent.classList.toggle("active")
+
+})
+
+})
+
+document.addEventListener("click",function(e){
+
+document.querySelectorAll(".dropdown").forEach(drop=>{
+
+if(!drop.contains(e.target)){
+drop.classList.remove("active")
+}
+
+})
+
+})
+</script>
+</html>
